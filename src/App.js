@@ -12,7 +12,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home loggedIn={loggedIn} />} />
-        <Route path="/sign-up" element={<Register login={login} />} />
+        <Route
+          path="/covid-tracker-sign_up"
+          element={<Register login={login} />}
+        />
       </Routes>
     </BrowserRouter>
   );

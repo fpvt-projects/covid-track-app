@@ -6,12 +6,14 @@ function Home({ loggedIn }) {
 
   const loginRedirect = () => {
     if (loggedIn === false) {
-      navigate("/sign-up");
+      navigate("/covid-tracker-sign_up");
     }
   };
+
   useEffect(() => {
     loginRedirect();
-  }, []);
+  });
+
   return (
     <div>
       <h1>This is from home!</h1>
