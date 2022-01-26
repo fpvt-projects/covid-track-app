@@ -1,7 +1,7 @@
 function App() {
   return (
-    <div style={AppContainerStyle}>
-      <h1>Hello World!</h1>
+    <div>
+      <h1 class="text-lg font-bold">Hello World!</h1>
     </div>
   );
 }
