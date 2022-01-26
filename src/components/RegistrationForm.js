@@ -25,13 +25,15 @@ function AccountDetailsForm() {
 
   const handleSubmit = () => {
     if (email === "") {
-      setError("Email Error");
+      setError("Please input a valid email.");
     } else if (password === "" || password_confirmation === "") {
-      setError("Password Error");
+      setError("Please input a valid password.");
+    } else if (password !== password_confirmation) {
+      setError("Please confirm your password.");
     } else if (lastname === "" || firstname === "" || middlename === "") {
-      setError("Name Error");
+      setError("Please input a complete name.");
     } else if (houseNumber === "" || city === "") {
-      setError("Address Error");
+      setError("Please input a valid address.");
     } else {
       alert("Successfully registered!");
       setEmail("");
@@ -66,7 +68,9 @@ function AccountDetailsForm() {
           <p className={"font-semibold mt-2"}>Email:</p>
           <input // Email
             className={`border ${
-              error === "Email Error" ? "border-red-500" : "border-black"
+              error === "Please input a valid email."
+                ? "border-red-500"
+                : "border-black"
             } pl-2 outline-none w-full h-8`}
             type="text"
             value={email}
@@ -79,9 +83,12 @@ function AccountDetailsForm() {
             <p className={"font-semibold mt-2"}>Password:</p>
             <input // Password
               className={`border ${
-                error === "Password Error" ? "border-red-500" : "border-black"
+                error === "Please input a valid password." ||
+                error === "Please confirm your password."
+                  ? "border-red-500"
+                  : "border-black"
               } pl-2 outline-none w-full h-8`}
-              type="text"
+              type="password"
               value={password}
               onChange={handleInputPassword}
               placeholder="••••••••"
@@ -93,9 +100,12 @@ function AccountDetailsForm() {
             </p>
             <input //Password confirmation
               className={`border ${
-                error === "Password Error" ? "border-red-500" : "border-black"
+                error === "Please input a valid password." ||
+                error === "Please confirm your password."
+                  ? "border-red-500"
+                  : "border-black"
               } pl-2 outline-none w-full h-8`}
-              type="text"
+              type="password"
               value={password_confirmation}
               onChange={handleInputPasswordConfirmation}
               placeholder="••••••••"
@@ -109,7 +119,9 @@ function AccountDetailsForm() {
       <div className={`w-full flex flex-col laptop:flex-row`}>
         <input // Lastname
           className={`border ${
-            error === "Name Error" ? "border-red-500" : "border-black"
+            error === "Please input a complete name."
+              ? "border-red-500"
+              : "border-black"
           } pl-2 outline-none w-full mt-4 laptop:mt-0 h-8`}
           type="text"
           value={lastname}
@@ -118,7 +130,9 @@ function AccountDetailsForm() {
         />
         <input // Firstname
           className={`border ${
-            error === "Name Error" ? "border-red-500" : "border-black"
+            error === "Please input a complete name."
+              ? "border-red-500"
+              : "border-black"
           } pl-2 outline-none w-full mt-4 laptop:mt-0 h-8`}
           type="text"
           value={firstname}
@@ -127,7 +141,9 @@ function AccountDetailsForm() {
         />
         <input // Middlename
           className={`border ${
-            error === "Name Error" ? "border-red-500" : "border-black"
+            error === "Please input a complete name."
+              ? "border-red-500"
+              : "border-black"
           } pl-2 outline-none w-full mt-4 laptop:mt-0 h-8`}
           type="text"
           value={middlename}
@@ -141,7 +157,9 @@ function AccountDetailsForm() {
       <div className={`w-full flex flex-col laptop:flex-row`}>
         <input // House number
           className={`border ${
-            error === "Address Error" ? "border-red-500" : "border-black"
+            error === "Please input a valid address."
+              ? "border-red-500"
+              : "border-black"
           } pl-2 outline-none w-full mt-4 laptop:mt-0 h-8`}
           type="text"
           value={houseNumber}
@@ -150,7 +168,9 @@ function AccountDetailsForm() {
         />
         <input // City
           className={`border ${
-            error === "Address Error" ? "border-red-500" : "border-black"
+            error === "Please input a valid address."
+              ? "border-red-500"
+              : "border-black"
           } pl-2 outline-none w-full mt-4 laptop:mt-0 h-8`}
           type="text"
           value={city}
@@ -215,6 +235,8 @@ function AccountDetailsForm() {
       <hr className={"my-4 border border-t-black"} />
 
       <TestResultForm />
+
+      <h1 className={"text-red-600 text-center font-semibold my-4"}>{error}</h1>
 
       <div className={"mt-8 flex justify-around"}>
         <button
