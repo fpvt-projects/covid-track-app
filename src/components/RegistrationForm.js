@@ -12,6 +12,7 @@ function AccountDetailsForm() {
   const [middlename, setMiddleName] = useState("");
   const [houseNumber, setHouseNumber] = useState("");
   const [city, setCity] = useState("");
+  const [toggleResultForm, setToggleResultForm] = useState(false);
 
   const handleInputEmail = (e) => setEmail(e.target.value);
   const handleInputPassword = (e) => setPassword(e.target.value);
@@ -22,6 +23,7 @@ function AccountDetailsForm() {
   const handleInputMiddlename = (e) => setMiddleName(e.target.value);
   const handleInputHouseNumber = (e) => setHouseNumber(e.target.value);
   const handleInputCity = (e) => setCity(e.target.value);
+  const showResultForm = () => setToggleResultForm(!toggleResultForm);
 
   const handleSubmit = () => {
     if (email === "") {
@@ -234,7 +236,16 @@ function AccountDetailsForm() {
 
       <hr className={"my-4 border border-t-black"} />
 
-      <TestResultForm />
+      <button
+        className={"w-full text-xs font-semibold"}
+        onClick={showResultForm}
+      >
+        {toggleResultForm
+          ? "Click here to close result form."
+          : "Click here to input test result."}
+      </button>
+
+      <TestResultForm toggleResultForm={toggleResultForm} />
 
       <h1 className={"text-red-600 text-center font-semibold my-4"}>{error}</h1>
 

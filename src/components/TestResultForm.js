@@ -1,8 +1,8 @@
 import React from "react";
 
-function TestResultForm() {
+function TestResultForm({ toggleResultForm }) {
   return (
-    <div className={"w-full"}>
+    <div className={`w-full ${toggleResultForm ? "block" : "hidden"} `}>
       <h1 className={"italic mt-4"}>Test result information.</h1>
       <div className={"w-full flex flex-col laptop:flex-row"}>
         <div className={"w-full"}>
