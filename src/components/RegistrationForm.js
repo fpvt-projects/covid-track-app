@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TestResultForm from "./TestResultForm";
+import RegistrationTestResultForm from "./RegistrationTestResultForm";
 
 function AccountDetailsForm() {
   const [error, setError] = useState(false);
@@ -245,7 +245,7 @@ function AccountDetailsForm() {
           : "Click here to input test result."}
       </button>
 
-      <TestResultForm toggleResultForm={toggleResultForm} />
+      <RegistrationTestResultForm toggleResultForm={toggleResultForm} />
 
       <h1 className={"text-red-600 text-center font-semibold my-4"}>{error}</h1>
 

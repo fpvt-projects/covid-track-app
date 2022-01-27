@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Home from "./routes/Home";
 import Register from "./routes/Register";
+import HomeTestResultForm from "./components/HomeTestResultForm";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -11,7 +12,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home loggedIn={loggedIn} />} />
+        <Route path="/" element={<Home loggedIn={loggedIn} />}>
+          <Route path="submit-test-result" element={<HomeTestResultForm />} />
+        </Route>
         <Route
           path="/covid-tracker-sign_up"
           element={<Register login={login} />}

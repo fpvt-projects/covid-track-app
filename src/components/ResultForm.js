@@ -1,8 +1,8 @@
 import React from "react";
 
-function TestResultForm({ toggleResultForm }) {
+function ResultForm() {
   return (
-    <div className={`w-full ${toggleResultForm ? "block" : "hidden"} `}>
+    <div className={`w-full`}>
       <h1 className={"italic mt-4"}>Test result information.</h1>
       <div className={"w-full flex flex-col laptop:flex-row"}>
         <div className={"w-full"}>
@@ -38,4 +38,4 @@ function TestResultForm({ toggleResultForm }) {
   );
 }
 
-export default TestResultForm;
+export default ResultForm;
