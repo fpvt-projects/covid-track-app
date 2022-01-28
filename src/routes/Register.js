@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import RegistrationForm from "../components/RegistrationForm";
 import LoginForm from "../components/LoginForm";
 
@@ -6,6 +7,17 @@ function Register({ login }) {
   const [toggleSignIn, setToggleSignIn] = useState(false);
 
   const showLoginForm = () => setToggleSignIn(!toggleSignIn);
+  const navigate = useNavigate();
+
+  const redirect = () => {
+    if (sessionStorage.getItem("token") !== null) {
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    redirect();
+  });
 
   return (
     <div className="w-screen flex flex-col h-screen overflow-hidden">

@@ -52,7 +52,7 @@ function AccountDetailsForm() {
   return (
     <div
       className={
-        "w-full bg-white pt-4 pb-24 laptop:pb-0 px-12 laptop:w-3/4 tablet:w-1/2"
+        "w-full bg-white pt-4 pb-24 laptop:pb-0 px-12 laptop:w-3/4 tablet:w-1/2 select-none"
       }
     >
       <h1 className={"text-center font-bold text-4xl font-sans"}>

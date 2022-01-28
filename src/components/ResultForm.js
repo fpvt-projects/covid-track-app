@@ -3,17 +3,17 @@ import React from "react";
 function ResultForm() {
   return (
     <div className={`w-full`}>
-      <h1 className={"italic mt-4"}>Test result information.</h1>
+      <h1 className={"italic mt-4 select-none"}>Test result information.</h1>
       <div className={"w-full flex flex-col laptop:flex-row"}>
         <div className={"w-full"}>
-          <p className={"font-semibold mt-2"}>Antigen Type:</p>
+          <p className={"font-semibold mt-2 select-none"}>Antigen Type:</p>
           <input // Antigen Type
             className={"border border-black pl-2 outline-none w-full h-8"}
             type="text"
           />
         </div>
         <div className={"w-full"}>
-          <p className={"font-semibold mt-2"}>Brand:</p>
+          <p className={"font-semibold mt-2 select-none"}>Brand:</p>
           <input // Brand
             className={"border border-black pl-2 outline-none w-full h-8"}
             type="text"
@@ -22,7 +22,7 @@ function ResultForm() {
       </div>
       <div
         className={
-          "mx-auto w-full mt-4 flex justify-around flex-col laptop:flex-row laptop:w-1/2"
+          "mx-auto w-full mt-4 flex justify-around flex-col laptop:flex-row laptop:w-1/2 select-none"
         }
       >
         <div>

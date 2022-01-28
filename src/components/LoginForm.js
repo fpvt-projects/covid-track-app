@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function LoginForm({ login }) {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,7 +18,7 @@ function LoginForm({ login }) {
       setError("Please input a valid password.");
     } else {
       alert("logged In!");
-      login();
+      sessionStorage.setItem("token", "login");
       navigate("/");
     }
   };
