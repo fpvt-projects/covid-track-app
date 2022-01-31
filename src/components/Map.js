@@ -42,12 +42,20 @@ function Map() {
           toggleNews ? "w-0" : "w-full"
         } tablet:w-3/4 ease-in-out duration-300 h-full`}
       ></div>
+
       <div
         className={`${
           toggleNews ? "w-full" : "w-0"
-        } tablet:w-1/4 ease-in-out duration-300 h-full overflow-y-auto flex justify-center bg-teal-900`}
+        } tablet:w-1/4 ease-in-out duration-300 h-full flex flex-col justify-center bg-teal-900`}
       >
-        <News newsList={newsList} />
+        <h1
+          className={`text-center text-white text-4xl my-4 font-semibold tracking-widest`}
+        >
+          NEWS UPDATES
+        </h1>
+        <div className={`w-full overflow-y-auto flex justify-center`}>
+          <News newsList={newsList} />
+        </div>
       </div>
     </div>
   );
