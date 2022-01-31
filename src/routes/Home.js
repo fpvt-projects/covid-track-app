@@ -2,41 +2,53 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 
 function Home() {
-  const [firstname, setFirstname] = useState("Firstname");
-  const [lastname, setLastname] = useState("Lastname");
+  const firstname = "Firstname";
+  const lastname = "Lastname";
 
   const [toggleSidebar, setToggleSideBar] = useState(false);
+  const [displayCountButton, setDisplayCountButton] = useState(true);
+  const [displayNewsButton, setDisplayNewsButton] = useState(false);
+  const [toggleCount, setToggleCount] = useState(false);
+  const [toggleNews, setToggleNews] = useState(false);
 
   const showSideBar = () => setToggleSideBar(!toggleSidebar);
+  const showCounts = () => setToggleCount(!toggleCount);
+  const showNews = () => setToggleNews(!toggleNews);
 
   const navigate = useNavigate();
+
+  const goToHome = () => {
+    setDisplayCountButton(true);
+    setDisplayNewsButton(false);
+    showSideBar();
+    navigate("/");
+  };
+  const goTosubmitresult = () => {
+    setDisplayCountButton(false);
+    setDisplayNewsButton(false);
+    showSideBar();
+    navigate("/submit-test-result");
+  };
+  const goToResultLog = () => {
+    setDisplayCountButton(false);
+    setDisplayNewsButton(false);
+    showSideBar();
+    navigate("/result-log");
+  };
+  const goTomap = () => {
+    setDisplayNewsButton(true);
+    setDisplayCountButton(false);
+    showSideBar();
+    navigate("/interactive-map");
+  };
 
   const loginRedirect = () => {
     if (sessionStorage.getItem("token") === null) {
       navigate("/covid-tracker-sign_up");
     }
   };
-
-  const goToHome = () => {
-    showSideBar();
-    navigate("/");
-  };
-  const goTosubmitresult = () => {
-    showSideBar();
-    navigate("/submit-test-result");
-  };
-  const goToResultLog = () => {
-    showSideBar();
-    navigate("/result-log");
-  };
-  const goTomap = () => {
-    showSideBar();
-    navigate("/interactive-map");
-  };
-
   const signOut = () => {
     const confirm = window.confirm("Confirm sign out?");
-
     if (confirm === true) {
       sessionStorage.removeItem("token");
       window.location.reload();
@@ -49,13 +61,33 @@ function Home() {
 
   return (
     <div className={`flex w-screen h-screen relative flex-col tablet:flex-row`}>
-      <div className={`tablet:hidden flex w-full h-14 bg-teal-900`}>
+      <div
+        className={`tablet:hidden flex justify-between w-full h-14 bg-teal-900`}
+      >
         <div className={`w-1/3 h-full flex justify-center items-center`}>
           <button
             className={`font-semibold text-white select-none`}
             onClick={showSideBar}
           >
             MENU
+          </button>
+        </div>
+        <div className={`w-1/3 h-full flex justify-center items-center`}>
+          <button
+            className={`${
+              displayCountButton ? "block" : "hidden"
+            } font-semibold text-white select-none`}
+            onClick={showCounts}
+          >
+            COUNTS
+          </button>
+          <button
+            className={`${
+              displayNewsButton ? "block" : "hidden"
+            } font-semibold text-white select-none`}
+            onClick={showNews}
+          >
+            NEWS
           </button>
         </div>
       </div>
@@ -138,10 +170,16 @@ function Home() {
       </div>
       {/*  -- END OF SIDEBAR -- */}
 
-      <div className={`w-full h-full m-auto`}>
-        <Outlet />
+      <div className={`w-full h-full m-auto overflow-hidden`}>
+        <Outlet
+          context={
+            displayCountButton
+              ? [toggleCount, setToggleCount]
+              : [toggleNews, setToggleNews]
+          }
+        />
       </div>
-      {/* <div
+      <div
         className={
           "h-4 w-full bg-slate-800 flex justify-center absolute bottom-0 items-center py-2"
         }
@@ -149,7 +187,7 @@ function Home() {
         <h1 className={"text-center text-white text-xs"}>
           This website is intended for learning purpose only.
         </h1>
-      </div> */}
+      </div>
     </div>
   );
 }
