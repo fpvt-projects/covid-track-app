@@ -10,7 +10,7 @@ function News({ newsList }) {
           author={news.author}
           title={news.title}
           url={news.url}
-          image={news.urlToImage}
+          urlToimg={news.urlToImage}
           description={news.description}
         />
       ))}

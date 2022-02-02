@@ -95,14 +95,18 @@ function Home() {
       {/* -- START OF SIDEBAR -- */}
 
       <div
-        className={`h-full tablet:w-1/5 w-full bg-teal-900 flex-col items-center absolute top-0 tablet:static ${
+        className={`h-full tablet:w-1/5 w-full bg-teal-900 flex-col items-center z-10 absolute top-0 tablet:static ${
           toggleSidebar ? "flex" : "hidden"
         } tablet:flex`}
       >
         {/* User details */}
         <div className={`w-full h-40 border-b-2 border-teal-800 flex`}>
           <div className={`w-1/3 h-full flex items-center justify-center`}>
-            <div className={`w-16 h-16 bg-cyan-400 rounded-full`}></div>
+            <img
+              className={`w-16 h-16`}
+              src="../assets/male-avatar.png"
+              alt="male"
+            />
           </div>
           <div className={`w-2/3 h-full flex flex-col justify-center px-4`}>
             <div>
