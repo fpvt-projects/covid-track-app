@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import HealthLogo from "../assets/HealthLogo.png";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -44,7 +45,7 @@ function LoginForm() {
       >
         <img
           className={`w-20 h-full`}
-          src="https://i.ibb.co/cbgCZW2/Health-Logo-freepik.png"
+          src={HealthLogo}
           alt="Health-Logo-freepik"
           border="0"
         />

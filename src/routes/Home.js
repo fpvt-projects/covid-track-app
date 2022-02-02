@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
+import maleAvatar from "../assets/maleAvatar.png";
+import femaleAvatar from "../assets/femaleAvatar.png";
 
 function Home() {
   const firstname = "Firstname";
   const lastname = "Lastname";
+  const gender = "male";
 
   const [toggleSidebar, setToggleSideBar] = useState(false);
   const [displayCountButton, setDisplayCountButton] = useState(true);
@@ -103,12 +106,12 @@ function Home() {
         <div className={`w-full h-40 border-b-2 border-teal-800 flex`}>
           <div className={`w-1/3 h-full flex items-center justify-center`}>
             <img
-              className={`w-16 h-16`}
-              src="../assets/male-avatar.png"
+              className={`w-20 h-20`}
+              src={gender === "male" ? maleAvatar : femaleAvatar}
               alt="male"
             />
           </div>
-          <div className={`w-2/3 h-full flex flex-col justify-center px-4`}>
+          <div className={`w-2/3 h-full flex flex-col justify-center`}>
             <div>
               <h1 className={`text-white `}>{`${firstname} ${lastname}`}</h1>
             </div>

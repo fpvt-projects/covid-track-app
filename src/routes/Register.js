@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import RegistrationForm from "../components/RegistrationForm";
 import LoginForm from "../components/LoginForm";
+import HealthLogo from "../assets/HealthLogo.png";
 
 function Register({ login }) {
   const [toggleSignIn, setToggleSignIn] = useState(false);
@@ -23,10 +24,7 @@ function Register({ login }) {
     <div className="w-screen flex flex-col h-screen overflow-hidden select-none">
       <div className="w-full h-12 bg-teal-900 flex justify-between items-center px-12">
         <div className={`h-full flex items-center`}>
-          <img
-            className={`h-4/5`}
-            src="https://i.ibb.co/cbgCZW2/Health-Logo-freepik.png"
-          />
+          <img className={`h-4/5`} src={HealthLogo} />
           <h1 className="text-white font-bold tracking-widest text-xl tablet:block hidden">
             COVID TRACKING APP
           </h1>
