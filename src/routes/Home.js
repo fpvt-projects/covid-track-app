@@ -26,6 +26,12 @@ function Home() {
     showSideBar();
     navigate("/");
   };
+  const goTojournal = () => {
+    setDisplayCountButton(false);
+    setDisplayNewsButton(false);
+    showSideBar();
+    navigate("/myjournal");
+  };
   const goTosubmitresult = () => {
     setDisplayCountButton(false);
     setDisplayNewsButton(false);
@@ -131,6 +137,15 @@ function Home() {
               <div className={`w-1/3`}></div>
               <div className={`w-2/3`}>
                 <h1 className={`select-none`}> HOME</h1>
+              </div>
+            </div>
+            <div
+              onClick={goTojournal}
+              className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
+            >
+              <div className={`w-1/3`}></div>
+              <div className={`w-2/3`}>
+                <h1 className={`select-none`}> MY JOURNAL</h1>
               </div>
             </div>
             <div
