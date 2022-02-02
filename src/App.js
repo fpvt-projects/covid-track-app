@@ -5,6 +5,9 @@ import HomeIndex from "./components/HomeIndex";
 import HomeTestResultForm from "./components/HomeTestResultForm";
 import ResultLog from "./components/ResultLog";
 import Map from "./components/Map";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   return (

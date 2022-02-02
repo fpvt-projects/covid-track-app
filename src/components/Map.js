@@ -9,12 +9,10 @@ function Map() {
 
   const getNews = async () => {
     await axios
-      .get(
-        `https://newsapi.org/v2/top-headlines?country=ph&apiKey=5442be3d8ce5436ca1bef710be25c49d`
-      )
+      .get(`/latest-news`)
       .then((res) => {
         let updatedlist = [];
-        res.data.articles.forEach((item) => {
+        res.data.data.articles.forEach((item) => {
           if (item.author === null) {
             item.author = "unknown author";
           }
