@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
@@ -22,6 +22,18 @@ function LoginForm() {
       navigate("/");
     }
   };
+
+  useEffect(() => {
+    if (email !== null || email !== "") {
+      setError("");
+    }
+  }, [email]);
+
+  useEffect(() => {
+    if (password !== null || password !== "") {
+      setError("");
+    }
+  }, [password]);
 
   return (
     <div
