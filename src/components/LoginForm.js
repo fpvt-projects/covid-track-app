@@ -27,38 +27,71 @@ function LoginForm() {
     <div
       className={`w-full h-full bg-white shadow-xl flex flex-col justify-center items-center`}
     >
-      <input // Email
-        className={`border ${
+      <div
+        className={`w-full my-4 flex px-4 flex-col items-center justify-center`}
+      >
+        <img
+          className={`w-20 h-full`}
+          src="https://i.ibb.co/cbgCZW2/Health-Logo-freepik.png"
+          alt="Health-Logo-freepik"
+          border="0"
+        />
+        <div className={`flex flex-col `}>
+          <h1 className={`font-semibold text-l text-red-500`}>
+            COVID TRACKING APP
+          </h1>
+          <h1
+            className={`text-xs text-center tracking-widest font-semibold text-red-500`}
+          >
+            FINAL PROJECT 2022
+          </h1>
+        </div>
+      </div>
+
+      <div
+        className={`w-4/5 h-12 border ${
           error === "Please input a valid email."
             ? "border-red-500"
             : "border-black"
-        } pl-2 outline-none w-4/5 mt-4 h-8`}
-        type="text"
-        value={email}
-        onChange={handleInputEmail}
-        placeholder="Email"
-      />
-      <input // Email
-        className={`border ${
+        } rounded`}
+      >
+        <h1 className={`text-xs select-none text-gray-400 ml-1`}>Email</h1>
+        <input // Email
+          className={`pl-2 outline-none w-full`}
+          type="text"
+          value={email}
+          onChange={handleInputEmail}
+        />
+      </div>
+      <div
+        className={`w-4/5 h-12 border mt-4 ${
           error === "Please input a valid password."
             ? "border-red-500"
             : "border-black"
-        } pl-2 outline-none w-4/5 mt-4 h-8`}
-        type="password"
-        value={password}
-        onChange={handleInputPassword}
-        placeholder="Password"
-      />
+        } rounded`}
+      >
+        <h1 className={`text-xs select-none text-gray-400 ml-1`}>Password</h1>
+        <input // password
+          className={` pl-2 outline-none w-4/5`}
+          type="password"
+          value={password}
+          onChange={handleInputPassword}
+        />
+      </div>
 
-      <h1 className={"text-red-600 text-center font-semibold my-4"}>{error}</h1>
+      <h1
+        className={"text-red-600 text-center font-semibold my-4 animate-bounce"}
+      >
+        {error}
+      </h1>
 
       <button
         className={
-          "tracking-widest bg-teal-900 px-6 py-2 rounded mt-2 font-bold text-white cursoir-pointer mb-8"
+          "tracking-widest bg-teal-900 hover:bg-teal-700 px-6 py-2 rounded mt-2 font-bold text-white cursoir-pointer mb-8"
         }
         onClick={handleLogin}
       >
-        Log in
+        LOG IN
       </button>
     </div>
   );

@@ -59,7 +59,7 @@ function AccountDetailsForm() {
         COVID TRACKER
       </h1>
       <p className={"text-center tracking-widest "}>
-        avion-school final project 2022
+        ** covid tracker registration and test result form **
       </p>
 
       <p className={"italic mt-4"}>Account Information.</p>

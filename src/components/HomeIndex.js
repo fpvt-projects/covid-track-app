@@ -54,39 +54,45 @@ function HomeIndex() {
           className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-8 shadow-2xl flex flex-col justify-center px-4`}
         >
           <h1 className={`font-semibold text-white text-m`}>Total cases:</h1>
-          <h1 className={`font-semibold text-right text-white text-3xl`}>
+          <h1 className={`font-semibold text-right text-white text-2xl`}>
             {apiTotalcount} (+123)
           </h1>
         </div>
         <div
           className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
         >
-          <h1 className={`text-white text-m`}>Total recoveries:</h1>
-          <h1 className={`font-semibold text-right text-white text-xl`}>
+          <h1 className={`font-semibold text-white text-m`}>
+            Total recoveries:
+          </h1>
+          <h1 className={`font-semibold text-right text-white text-2xl`}>
             {adpiTotalrecover} (+1234)
           </h1>
         </div>
         <div
           className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
         >
-          <h1 className={`text-white text-m`}>Active cases:</h1>
-          <h1 className={`font-semibold text-right text-white text-xl`}>
+          <h1 className={`font-semibold text-white text-m`}>Active cases:</h1>
+          <h1 className={`font-semibold text-right text-white text-2xl`}>
             {apiActivecases} (+23)
           </h1>
         </div>
         <div
           className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
         >
-          <h1 className={`text-white text-m`}>Daily new cases:</h1>
-          <h1 className={`font-semibold text-right text-white text-xl`}>
+          <h1 className={`font-semibold text-white text-m`}>
+            Daily new cases:
+          </h1>
+          <h1 className={`font-semibold text-right text-white text-2xl`}>
             {apiDailynewcases} (+23)
           </h1>
         </div>
         <div
           className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
         >
-          <h1 className={`text-white text-m`}>Daily recovered:</h1>
-          <h1 className={`font-semibold text-right text-white text-xl`}>
+          <h1 className={`font-semibold text-white text-m`}>
+            Daily recovered:
+          </h1>
+          <h1 className={`font-semibold text-right text-white text-2xl`}>
             {apiDailynewrecoveries} (+12)
           </h1>
         </div>

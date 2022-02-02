@@ -20,13 +20,19 @@ function Register({ login }) {
   });
 
   return (
-    <div className="w-screen flex flex-col h-screen overflow-hidden">
+    <div className="w-screen flex flex-col h-screen overflow-hidden select-none">
       <div className="w-full h-12 bg-teal-900 flex justify-between items-center px-12">
-        <div>
-          <h1 className="text-white">LOGO</h1>
+        <div className={`h-full flex items-center`}>
+          <img
+            className={`h-4/5`}
+            src="https://i.ibb.co/cbgCZW2/Health-Logo-freepik.png"
+          />
+          <h1 className="text-white font-bold tracking-widest text-xl tablet:block hidden">
+            COVID TRACKING APP
+          </h1>
         </div>
         <div>
-          <h1 className="text-white cursor-pointer" onClick={showLoginForm}>
+          <h1 className={`text-white cursor-pointer`} onClick={showLoginForm}>
             SIGN IN
           </h1>
         </div>
@@ -35,7 +41,7 @@ function Register({ login }) {
         <div
           className={`absolute ${
             toggleSignIn ? "flex" : "hidden"
-          } w-full h-80 top-0 m-0 right-0 bg-red-300 tablet:w-80 tablet:right-4`}
+          } w-full h-100 top-0 m-0 right-0 bg-red-300 tablet:w-80 tablet:right-4`}
         >
           <LoginForm login={login} />
         </div>
@@ -50,9 +56,17 @@ function Register({ login }) {
           "h-4 w-full bg-teal-900 flex justify-center items-center py-2"
         }
       >
-        <h1 className={"text-center text-white text-xs"}>
+        <h1 className={"text-center text-white text-xs tablet:block hidden"}>
           This website is intended for learning purpose only.
         </h1>
+        <a
+          className={"text-center text-white text-xs ml-1"}
+          target="_blank"
+          rel="noreferrer"
+          href="https://www.freepik.com/vectors/logo"
+        >
+          Logo vector created by freepik - www.freepik.com
+        </a>
       </div>
     </div>
   );

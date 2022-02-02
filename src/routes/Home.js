@@ -95,7 +95,7 @@ function Home() {
       {/* -- START OF SIDEBAR -- */}
 
       <div
-        className={`h-full tablet:w-1/5 w-full bg-teal-900 flex-col items-center z-10 absolute top-0 tablet:static ${
+        className={`h-full tablet:w-1/5 w-full bg-teal-900 flex-col items-center z-10 tablet:z-0 absolute top-0 tablet:static ${
           toggleSidebar ? "flex" : "hidden"
         } tablet:flex`}
       >
