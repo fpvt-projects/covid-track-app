@@ -7,8 +7,8 @@ function Map() {
   const [toggleNews, setToggleNews] = useOutletContext();
   const [newsList, setNewsList] = useState([]);
 
-  const getNews = async () => {
-    await axios
+  const getNews = () => {
+    axios
       .get(`/latest-news`)
       .then((res) => {
         let updatedlist = [];

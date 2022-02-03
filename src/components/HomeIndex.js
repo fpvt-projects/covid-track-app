@@ -21,8 +21,8 @@ function HomeIndex() {
     return str.join(".");
   };
 
-  const getCovidData = async () => {
-    await axios
+  const getCovidData = () => {
+    axios
       .get("/covid-data")
       .then((res) => {
         setApiTotalcount(commafy(res.data.data.cases));

@@ -3,7 +3,7 @@ import NewsArticle from "./NewsArticle";
 
 function News({ newsList }) {
   return (
-    <div className={`w-5/6`}>
+    <div className={`w-5/6 border-0 rounded`}>
       {newsList.map((news, index) => (
         <NewsArticle
           key={index}
