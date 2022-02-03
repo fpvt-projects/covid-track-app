@@ -3,35 +3,51 @@ import React from "react";
 function ResultForm() {
   return (
     <div className={`w-full`}>
-      <h1 className={"italic mt-4 select-none"}>Test result information.</h1>
-      <div className={"w-full flex flex-col laptop:flex-row"}>
-        <div className={"w-full"}>
-          <p className={"font-semibold mt-2 select-none"}>Antigen Type:</p>
-          <input // Antigen Type
-            className={"border border-black pl-2 outline-none w-full h-8"}
+      <h1 className={"italic mt-4 select-none mb-2"}>
+        Test result information.
+      </h1>
+      <div className={"w-full flex flex-col"}>
+        <div className={`w-full h-12 border mb-2 border-black rounded`}>
+          <h1 className={`text-xs select-none text-gray-400 ml-1`}>
+            Antigen Type
+          </h1>
+          <input // Antigen type
+            className={`pl-2 outline-none w-full cursor-pointer`}
             type="text"
           />
         </div>
-        <div className={"w-full"}>
-          <p className={"font-semibold mt-2 select-none"}>Brand:</p>
-          <input // Brand
-            className={"border border-black pl-2 outline-none w-full h-8"}
-            type="text"
-          />
+        <div className={"w-full flex flex-col"}>
+          <div className={`w-full h-12 border mb-2 border-black rounded`}>
+            <h1 className={`text-xs select-none text-gray-400 ml-1`}>Brand</h1>
+            <input // Brand
+              className={`pl-2 outline-none w-full cursor-pointer`}
+              type="text"
+            />
+          </div>
         </div>
       </div>
       <div
         className={
-          "mx-auto w-full mt-4 flex justify-around flex-col laptop:flex-row laptop:w-1/2 select-none"
+          "mx-auto w-full mt-4 flex justify-around flex-col laptop:flex-row select-none"
         }
       >
         <div>
-          <input type="radio" value="positive" name="result" /> I am covid
-          POSITIVE.
+          <input
+            className={`cursor-pointer`}
+            type="radio"
+            value="positive"
+            name="result"
+          />{" "}
+          POSITIVE
         </div>
         <div>
-          <input type="radio" value="negative" name="result" /> I am covid
-          NEGATIVE.
+          <input
+            className={`cursor-pointer`}
+            type="radio"
+            value="negative"
+            name="result"
+          />{" "}
+          NEGATIVE
         </div>
       </div>
     </div>
