@@ -8,30 +8,33 @@ function Map() {
   const [toggleNews, setToggleNews] = useOutletContext();
   const [newsList, setNewsList] = useState([]);
 
-  const getNews = () => {
+  useEffect(() => {
+    let isApiSubscribed = true;
     axios
       .get(`/latest-news`)
       .then((res) => {
-        let updatedlist = [];
-        res.data.data.articles.forEach((item) => {
-          if (item.author === null) {
-            item.author = "unknown author";
-          }
-          updatedlist.push({
-            author: item.author,
-            title: item.title,
-            description: item.description,
-            url: item.url,
-            urlToImage: item.urlToImage,
+        if (isApiSubscribed) {
+          let updatedlist = [];
+          res.data.data.articles.forEach((item) => {
+            if (item.author === null) {
+              item.author = "unknown author";
+            }
+            updatedlist.push({
+              author: item.author,
+              title: item.title,
+              description: item.description,
+              url: item.url,
+              urlToImage: item.urlToImage,
+            });
           });
-        });
-        setNewsList(updatedlist);
+          setNewsList(updatedlist);
+        }
       })
       .catch((error) => console.log(error));
-  };
 
-  useEffect(() => {
-    getNews();
+    return () => {
+      isApiSubscribed = false;
+    };
   }, []);
 
   return (

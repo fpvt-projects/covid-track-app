@@ -21,21 +21,24 @@ function HomeIndex() {
     return str.join(".");
   };
 
-  const getCovidData = () => {
+  useEffect(() => {
+    let isApiSubscribed = true;
     axios
       .get("/covid-data")
       .then((res) => {
-        setApiTotalcount(commafy(res.data.data.cases));
-        setApiTotalrecover(commafy(res.data.data.recovered));
-        setApiDailynewrecoveries(commafy(res.data.data.todayRecovered));
-        setApiDailynewcases(commafy(res.data.data.todayCases));
-        setApiActivecases(commafy(res.data.data.active));
+        if (isApiSubscribed) {
+          setApiTotalcount(commafy(res.data.data.cases));
+          setApiTotalrecover(commafy(res.data.data.recovered));
+          setApiDailynewrecoveries(commafy(res.data.data.todayRecovered));
+          setApiDailynewcases(commafy(res.data.data.todayCases));
+          setApiActivecases(commafy(res.data.data.active));
+        }
       })
       .catch((error) => console.log(error));
-  };
 
-  useEffect(() => {
-    getCovidData();
+    return () => {
+      isApiSubscribed = false;
+    };
   }, []);
 
   return (
