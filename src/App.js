@@ -4,7 +4,7 @@ import Register from "./routes/Register";
 import HomeIndex from "./components/HomeIndex";
 import HomeTestResultForm from "./components/HomeTestResultForm";
 import ResultLog from "./components/ResultLog";
-import Map from "./components/Map";
+import ChartandNews from "./components/ChartandNews";
 import Journal from "./components/Journal";
 import axios from "axios";
 
@@ -19,7 +19,7 @@ function App() {
           <Route path="myjournal" element={<Journal />} />
           <Route path="submit-test-result" element={<HomeTestResultForm />} />
           <Route path="result-log" element={<ResultLog />} />
-          <Route path="interactive-map" element={<Map />} />
+          <Route path="interactive-map" element={<ChartandNews />} />
         </Route>
         <Route path="/covid-tracker-sign_up" element={<Register />} />
       </Routes>

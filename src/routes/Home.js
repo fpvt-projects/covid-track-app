@@ -172,7 +172,7 @@ function Home() {
             >
               <div className={`w-1/3`}></div>
               <div className={`w-2/3`}>
-                <h1 className={`select-none`}>{`MAP & NEWS`}</h1>
+                <h1 className={`select-none`}>{`CHART & NEWS`}</h1>
               </div>
             </div>
           </div>

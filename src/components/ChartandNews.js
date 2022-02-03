@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import News from "./NewsList/News";
+import CovidChart from "./Chart/CovidChart";
 import axios from "axios";
 
 function Map() {
@@ -36,7 +37,7 @@ function Map() {
   return (
     <div className={`w-full h-full flex relative`}>
       <div className={`w-full tablet:w-3/4 ease-in-out duration-300 h-full`}>
-        render map here!
+        <CovidChart />
       </div>
 
       <div
