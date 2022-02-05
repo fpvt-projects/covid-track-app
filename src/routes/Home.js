@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import maleAvatar from "../assets/maleAvatar.png";
 import femaleAvatar from "../assets/femaleAvatar.png";
+import jwt from "jwt-decode";
 
 function Home() {
-  const firstname = "Firstname";
-  const lastname = "Lastname";
+  const [userEmail, setUserEmail] = useState("");
   const gender = "male";
 
   const [toggleSidebar, setToggleSideBar] = useState(false);
@@ -52,7 +52,10 @@ function Home() {
   };
 
   const loginRedirect = () => {
-    if (sessionStorage.getItem("token") === null) {
+    if (sessionStorage.getItem("token") !== null) {
+      const decoded = jwt(sessionStorage.getItem("token"));
+      setUserEmail(decoded.email);
+    } else {
       navigate("/covid-tracker-sign_up");
     }
   };
@@ -119,7 +122,7 @@ function Home() {
           </div>
           <div className={`w-2/3 h-full flex flex-col justify-center`}>
             <div>
-              <h1 className={`text-white `}>{`${firstname} ${lastname}`}</h1>
+              <h1 className={`text-white tracking-widest`}>{userEmail}</h1>
             </div>
             <div>
               <h1 className={`text-green-500 font-semibold`}>

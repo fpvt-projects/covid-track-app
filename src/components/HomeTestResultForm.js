@@ -6,8 +6,8 @@ function HomeTestResultForm() {
   return (
     <div
       className={`w-full h-full flex justify-center items-center 
-      bg-[url('https://wallpaperaccess.com/full/3551739.jpg')]
-       bg-cover`}
+      bg-gray-200
+       `}
     >
       <div
         className={`h-auto w-4/5  laptop:w-1/3 px-8 py-12 flex flex-col justify-center items-center m-auto bg-white shadow-lg rounded`}

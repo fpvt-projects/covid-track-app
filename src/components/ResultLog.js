@@ -1,9 +1,10 @@
 import React from "react";
+import Logs from "./Results/Logs";
 
 function ResultLog() {
   return (
     <div>
-      <h1>From Result Log!</h1>
+      <Logs />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import HealthLogo from "../assets/HealthLogo.png";
+import axios from "axios";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -18,9 +19,17 @@ function LoginForm() {
     } else if (password === "") {
       setError("Please input a valid password.");
     } else {
-      alert("logged In!");
-      sessionStorage.setItem("token", "login");
-      navigate("/");
+      axios
+        .post(`/auth`, { auth: { email: email, password: password } })
+        .then((res) => {
+          sessionStorage.setItem("token", res.data.jwt);
+          navigate("/");
+        })
+        .catch((error) => {
+          if (error.response.request.status === 404) {
+            setError("Email or password does not match!");
+          }
+        });
     }
   };
 

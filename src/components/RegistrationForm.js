@@ -240,7 +240,7 @@ function AccountDetailsForm() {
                 pattern="[0-9]+"
               />
             </div>
-            <div>
+            <div className={`w-2/3`}>
               <h1 className={`text-xs select-none text-gray-400 ml-1`}>
                 Birthdate
               </h1>
