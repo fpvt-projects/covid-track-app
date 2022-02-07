@@ -11,7 +11,9 @@ function Map() {
   useEffect(() => {
     let isApiSubscribed = true;
     axios
-      .get(`/latest-news`)
+      .get(`/latest-news`, {
+        headers: { Authorization: sessionStorage.getItem("token") },
+      })
       .then((res) => {
         if (isApiSubscribed) {
           let updatedlist = [];
