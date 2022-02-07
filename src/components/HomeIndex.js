@@ -1,48 +1,75 @@
 import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import Infographics from "./Infographics/Infographics";
+import News from "./NewsList/News";
 import axios from "axios";
 
 function HomeIndex() {
-  const [toggleCount, setToggleCount] = useOutletContext();
-  const [apiTotalcount, setApiTotalcount] = useState("");
-  const [adpiTotalrecover, setApiTotalrecover] = useState("");
-  const [apiDailynewcases, setApiDailynewcases] = useState("");
-  const [apiDailynewrecoveries, setApiDailynewrecoveries] = useState("");
-  const [apiActivecases, setApiActivecases] = useState("");
+  const [toggleNews, setToggleNews] = useOutletContext();
+  const [newsList, setNewsList] = useState([]);
 
-  const infographics = [
-    "https://decoda.ca/wp-content/uploads/Physical-distancing-infographic-791x1024-1.jpg",
-    "https://www.paho.org/en/file/61942/download?token=VhIwWVVD",
-    "https://www.who.int/images/default-source/wpro/countries/malaysia/infographics/adolescent-and-covid-19/adolescents-and-covid-19-page-4.png?sfvrsn=1ffc3747_2",
-    "https://www.who.int/images/default-source/wpro/countries/philippines/emergencies/covid-19/avoid-the-3cs/slide1.png",
-    "https://www.who.int/images/default-source/wpro/countries/philippines/emergencies/covid-19/bahaynihan/stay-at-home-flier-eng-a5-with-branding.png",
-  ];
+  // const [toggleCount, setToggleCount] = useOutletContext();
+  // const [apiTotalcount, setApiTotalcount] = useState("");
+  // const [adpiTotalrecover, setApiTotalrecover] = useState("");
+  // const [apiDailynewcases, setApiDailynewcases] = useState("");
+  // const [apiDailynewrecoveries, setApiDailynewrecoveries] = useState("");
+  // const [apiActivecases, setApiActivecases] = useState("");
 
-  const commafy = (num) => {
-    var str = num.toString().split(".");
-    if (str[0].length >= 4) {
-      str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,");
-    }
-    if (str[1] && str[1].length >= 4) {
-      str[1] = str[1].replace(/(\d{3})/g, "$1 ");
-    }
-    return str.join(".");
-  };
+  // const commafy = (num) => {
+  //   var str = num.toString().split(".");
+  //   if (str[0].length >= 4) {
+  //     str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,");
+  //   }
+  //   if (str[1] && str[1].length >= 4) {
+  //     str[1] = str[1].replace(/(\d{3})/g, "$1 ");
+  //   }
+  //   return str.join(".");
+  // };
+
+  // useEffect(() => {
+  //   let isApiSubscribed = true;
+  //   axios
+  //     .get("/covid-data", {
+  //       headers: { Authorization: sessionStorage.getItem("token") },
+  //     })
+  //     .then((res) => {
+  //       if (isApiSubscribed) {
+  //         setApiTotalcount(commafy(res.data.data.cases));
+  //         setApiTotalrecover(commafy(res.data.data.recovered));
+  //         setApiDailynewrecoveries(commafy(res.data.data.todayRecovered));
+  //         setApiDailynewcases(commafy(res.data.data.todayCases));
+  //         setApiActivecases(commafy(res.data.data.active));
+  //       }
+  //     })
+  //     .catch((error) => console.log(error));
+
+  //   return () => {
+  //     isApiSubscribed = false;
+  //   };
+  // }, []);
 
   useEffect(() => {
     let isApiSubscribed = true;
     axios
-      .get("/covid-data", {
+      .get(`/latest-news`, {
         headers: { Authorization: sessionStorage.getItem("token") },
       })
       .then((res) => {
         if (isApiSubscribed) {
-          setApiTotalcount(commafy(res.data.data.cases));
-          setApiTotalrecover(commafy(res.data.data.recovered));
-          setApiDailynewrecoveries(commafy(res.data.data.todayRecovered));
-          setApiDailynewcases(commafy(res.data.data.todayCases));
-          setApiActivecases(commafy(res.data.data.active));
+          let updatedlist = [];
+          res.data.data.articles.forEach((item) => {
+            if (item.author === null) {
+              item.author = "unknown author";
+            }
+            updatedlist.push({
+              author: item.author,
+              title: item.title,
+              description: item.description,
+              url: item.url,
+              urlToImage: item.urlToImage,
+            });
+          });
+          setNewsList(updatedlist);
         }
       })
       .catch((error) => console.log(error));
@@ -111,7 +138,22 @@ function HomeIndex() {
           </div>
         </div>
       </div>
+
       <div
+        className={`${
+          toggleNews ? "w-full" : "w-0"
+        } tablet:w-1/4 duration-300 tablet:static h-full absolute right-0 flex flex-col items-center tablet:bg-teal-900 bg-black/50 overflow-x-hidden overflow-y-auto`}
+      >
+        <h1
+          className={`text-center hidden tablet:block text-white text-4xl my-4 font-semibold tracking-widest`}
+        >
+          NEWS UPDATES
+        </h1>
+        <div className={`w-full overflow-y-auto flex justify-center`}>
+          <News newsList={newsList} />
+        </div>
+      </div>
+      {/* <div
         className={`${
           toggleCount ? "w-full" : "w-0"
         } tablet:w-1/4 duration-300 tablet:static h-full absolute right-0 flex flex-col items-center tablet:bg-teal-900 bg-black/50 overflow-x-hidden overflow-y-auto`}
@@ -162,7 +204,7 @@ function HomeIndex() {
             {apiDailynewrecoveries} (+12)
           </h1>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

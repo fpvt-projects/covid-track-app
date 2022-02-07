@@ -9,8 +9,8 @@ function Home() {
   const gender = "male";
 
   const [toggleSidebar, setToggleSideBar] = useState(false);
-  const [displayCountButton, setDisplayCountButton] = useState(true);
-  const [displayNewsButton, setDisplayNewsButton] = useState(false);
+  const [displayCountButton, setDisplayCountButton] = useState(false);
+  const [displayNewsButton, setDisplayNewsButton] = useState(true);
   const [toggleCount, setToggleCount] = useState(false);
   const [toggleNews, setToggleNews] = useState(false);
 
@@ -21,8 +21,8 @@ function Home() {
   const navigate = useNavigate();
 
   const goToHome = () => {
-    setDisplayCountButton(true);
-    setDisplayNewsButton(false);
+    setDisplayCountButton(false);
+    setDisplayNewsButton(true);
     showSideBar();
     navigate("/");
   };
@@ -45,8 +45,8 @@ function Home() {
     navigate("/result-log");
   };
   const goTomap = () => {
-    setDisplayNewsButton(true);
-    setDisplayCountButton(false);
+    setDisplayNewsButton(false);
+    setDisplayCountButton(true);
     showSideBar();
     navigate("/interactive-map");
   };
@@ -175,7 +175,7 @@ function Home() {
             >
               <div className={`w-1/3`}></div>
               <div className={`w-2/3`}>
-                <h1 className={`select-none`}>{`CHART & NEWS`}</h1>
+                <h1 className={`select-none`}>{`CHART & COUNTS`}</h1>
               </div>
             </div>
           </div>
