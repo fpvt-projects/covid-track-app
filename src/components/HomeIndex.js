@@ -8,46 +8,6 @@ function HomeIndex() {
   const [toggleNews, setToggleNews] = useOutletContext();
   const [newsList, setNewsList] = useState([]);
 
-  // const [toggleCount, setToggleCount] = useOutletContext();
-  // const [apiTotalcount, setApiTotalcount] = useState("");
-  // const [adpiTotalrecover, setApiTotalrecover] = useState("");
-  // const [apiDailynewcases, setApiDailynewcases] = useState("");
-  // const [apiDailynewrecoveries, setApiDailynewrecoveries] = useState("");
-  // const [apiActivecases, setApiActivecases] = useState("");
-
-  // const commafy = (num) => {
-  //   var str = num.toString().split(".");
-  //   if (str[0].length >= 4) {
-  //     str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,");
-  //   }
-  //   if (str[1] && str[1].length >= 4) {
-  //     str[1] = str[1].replace(/(\d{3})/g, "$1 ");
-  //   }
-  //   return str.join(".");
-  // };
-
-  // useEffect(() => {
-  //   let isApiSubscribed = true;
-  //   axios
-  //     .get("/covid-data", {
-  //       headers: { Authorization: sessionStorage.getItem("token") },
-  //     })
-  //     .then((res) => {
-  //       if (isApiSubscribed) {
-  //         setApiTotalcount(commafy(res.data.data.cases));
-  //         setApiTotalrecover(commafy(res.data.data.recovered));
-  //         setApiDailynewrecoveries(commafy(res.data.data.todayRecovered));
-  //         setApiDailynewcases(commafy(res.data.data.todayCases));
-  //         setApiActivecases(commafy(res.data.data.active));
-  //       }
-  //     })
-  //     .catch((error) => console.log(error));
-
-  //   return () => {
-  //     isApiSubscribed = false;
-  //   };
-  // }, []);
-
   useEffect(() => {
     let isApiSubscribed = true;
     axios

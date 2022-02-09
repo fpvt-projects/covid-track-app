@@ -7,6 +7,7 @@ import ResultLog from "./components/ResultLog";
 import ChartandNews from "./components/ChartandNews";
 import Journal from "./components/Journal";
 import axios from "axios";
+import "./App.css";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
