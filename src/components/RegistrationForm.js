@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import RegistrationTestResultForm from "./RegistrationTestResultForm";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AccountDetailsForm() {
+  const navigate = useNavigate();
   const [error, setError] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
+
   const [lastname, setLastName] = useState("");
   const [firstname, setFirstName] = useState("");
   const [middlename, setMiddleName] = useState("");
   const [houseNumber, setHouseNumber] = useState("");
   const [region, setRegion] = useState("");
+  const [cellnumber, setCellnumber] = useState("");
+  const [birthdate, setBirthdatee] = useState("");
+  const [gender, setGender] = useState("");
+  // const [account_id, setAccount_id] = useState("");
+
   const [toggleResultForm, setToggleResultForm] = useState(false);
 
   const handleInputEmail = (e) => setEmail(e.target.value);
@@ -23,7 +32,77 @@ function AccountDetailsForm() {
   const handleInputMiddlename = (e) => setMiddleName(e.target.value);
   const handleInputHouseNumber = (e) => setHouseNumber(e.target.value);
   const handleInputRegion = (e) => setRegion(e.target.value);
+  const handleInputCellnumber = (e) => setCellnumber(e.target.value);
+  const handleInputBirthdate = (e) => setBirthdatee(e.target.value);
+  const handleInputGender = (e) => setGender(e.target.value);
+
   const showResultForm = () => setToggleResultForm(!toggleResultForm);
+
+  const createAccount = async () => {
+    await axios
+      .post(`/v1/registrations`, {
+        email: email,
+        password: password,
+        password_digest: password_confirmation,
+      })
+      .then((res) => {
+        // console.log(res.data.account.id);
+        let account_id = res.data.account.id;
+        createUser(account_id);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const createUser = (account_id) => {
+    axios
+      .post(`/v1/users`, {
+        user: {
+          lastname: lastname,
+          middlename: middlename,
+          firstname: firstname,
+          address: houseNumber,
+          city: region,
+          cellnumber: cellnumber,
+          birthdate: birthdate,
+          gender: gender,
+          account_id: account_id,
+        },
+      })
+      .then((res) => {
+        // console.log(res);
+        registerLogin();
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const registerLogin = () => {
+    axios
+      .post(`/auth`, {
+        auth: {
+          email: email,
+          password: password,
+        },
+      })
+      .then((res) => {
+        sessionStorage.setItem("token", res.data.jwt);
+        navigate("/");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const clearInputs = () => {
+    setEmail("");
+    setPassword("");
+    setPasswordConfirmation("");
+    setLastName("");
+    setFirstName("");
+    setMiddleName("");
+    setHouseNumber("");
+    setRegion("");
+    setBirthdatee("");
+    setCellnumber("");
+    setGender("");
+  };
 
   const handleSubmit = () => {
     if (email === "") {
@@ -34,18 +113,12 @@ function AccountDetailsForm() {
       setError("Please confirm your password.");
     } else if (lastname === "" || firstname === "" || middlename === "") {
       setError("Please input a complete name.");
-    } else if (houseNumber === "" || ServiceWorkerRegistration === "") {
+    } else if (houseNumber === "" || region === "") {
       setError("Please input a valid address.");
     } else {
-      alert("Successfully registered!");
-      setEmail("");
-      setPassword("");
-      setPasswordConfirmation("");
-      setLastName("");
-      setFirstName("");
-      setMiddleName("");
-      setHouseNumber("");
-      setRegion("");
+      createAccount();
+
+      clearInputs();
     }
   };
 
@@ -214,6 +287,7 @@ function AccountDetailsForm() {
             <option value="Region II - Cagayan Valley">
               Region II - Cagayan Valley
             </option>
+            <option value="NCR">NCR</option>
             <option value="Region III - Central Luzon">
               Region III - Central Luzon
             </option>
@@ -230,25 +304,16 @@ function AccountDetailsForm() {
         <p className="font-semibold mt-4 ">Additional information:</p>
 
         <div className={`w-full h-12 border mb-2 border-black rounded`}>
-          <div className={`flex flex-row`}>
-            <div>
-              <h1 className={`text-xs select-none text-gray-400 ml-1`}>Age</h1>
-              <input // Age
-                className={`pl-2 outline-none w-full cursor-pointer`}
-                type="text"
-                maxLength={2}
-                pattern="[0-9]+"
-              />
-            </div>
-            <div className={`w-2/3`}>
-              <h1 className={`text-xs select-none text-gray-400 ml-1`}>
-                Birthdate
-              </h1>
-              <input // Birthdate
-                className={`pl-2 outline-none w-full cursor-pointer`}
-                type="date"
-              />
-            </div>
+          <div className={`w-11/12`}>
+            <h1 className={`text-xs select-none text-gray-400 ml-1`}>
+              Birthdate
+            </h1>
+            <input // Birthdate
+              className={`pl-2 outline-none w-full cursor-pointer`}
+              onChange={handleInputBirthdate}
+              value={birthdate}
+              type="date"
+            />
           </div>
         </div>
         <div className={`w-full h-12 border mb-2 border-black rounded`}>
@@ -257,6 +322,8 @@ function AccountDetailsForm() {
           </h1>
           <input // Contact
             className={`pl-2 outline-none w-full cursor-pointer`}
+            onChange={handleInputCellnumber}
+            value={cellnumber}
             type="text"
             maxLength={11}
           />
@@ -268,18 +335,20 @@ function AccountDetailsForm() {
         <div className={"w-full flex justify-around"}>
           <div>
             <input // Gender Male
+              onChange={handleInputGender}
               className={"mr-2 cursor-pointer"}
               type="radio"
-              value="male"
+              value="Male"
               name="gender"
             />
             Male
           </div>
           <div>
             <input // Gender Female
+              onChange={handleInputGender}
               className={"mr-2 cursor-pointer"}
               type="radio"
-              value="female"
+              value="Female"
               name="gender"
             />
             Female

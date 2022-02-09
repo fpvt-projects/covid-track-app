@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import maleAvatar from "../assets/maleAvatar.png";
 import femaleAvatar from "../assets/femaleAvatar.png";
+import axios from "axios";
 import jwt from "jwt-decode";
 
 function Home() {
@@ -52,10 +53,7 @@ function Home() {
   };
 
   const loginRedirect = () => {
-    if (sessionStorage.getItem("token") !== null) {
-      const decoded = jwt(sessionStorage.getItem("token"));
-      setUserEmail(decoded.email);
-    } else {
+    if (sessionStorage.getItem("token") === null) {
       navigate("/covid-tracker-sign_up");
     }
   };
@@ -113,21 +111,23 @@ function Home() {
       >
         {/* User details */}
         <div className={`w-full h-40 border-b-2 border-teal-800 flex`}>
-          <div className={`w-1/3 h-full flex items-center justify-center`}>
-            <img
-              className={`w-20 h-20`}
-              src={gender === "male" ? maleAvatar : femaleAvatar}
-              alt="male"
-            />
-          </div>
-          <div className={`w-2/3 h-full flex flex-col justify-center`}>
-            <div>
-              <h1 className={`text-white tracking-widest`}>{userEmail}</h1>
+          <div className={`flex w-11/12 mx-auto`}>
+            <div className={`w-1/3 h-full flex items-center justify-center`}>
+              <img
+                className={`w-20 `}
+                src={gender === "male" ? maleAvatar : femaleAvatar}
+                alt="male"
+              />
             </div>
-            <div>
-              <h1 className={`text-green-500 font-semibold`}>
-                status: NEGATIVE
-              </h1>
+            <div className={`w-2/3 h-full flex flex-col justify-center`}>
+              <div>
+                <h1 className={`text-white tracking-widest`}>{userEmail}</h1>
+              </div>
+              <div>
+                <h1 className={`text-green-500 font-semibold`}>
+                  status: NEGATIVE
+                </h1>
+              </div>
             </div>
           </div>
         </div>

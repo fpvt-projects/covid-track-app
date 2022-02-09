@@ -22,7 +22,6 @@ function LoginForm() {
       axios
         .post(`/auth`, { auth: { email: email, password: password } })
         .then((res) => {
-          console.log(res);
           sessionStorage.setItem("token", res.data.jwt);
           navigate("/");
         })

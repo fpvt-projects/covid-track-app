@@ -4,7 +4,7 @@ import RegistrationForm from "../components/RegistrationForm";
 import LoginForm from "../components/LoginForm";
 import HealthLogo from "../assets/HealthLogo.png";
 
-function Register({ login }) {
+function Register() {
   const [toggleSignIn, setToggleSignIn] = useState(false);
 
   const showLoginForm = () => setToggleSignIn(!toggleSignIn);
@@ -41,7 +41,7 @@ function Register({ login }) {
             toggleSignIn ? "flex" : "hidden"
           } w-full h-100 top-0 m-0 right-0 bg-red-300 tablet:w-80 tablet:right-4`}
         >
-          <LoginForm login={login} />
+          <LoginForm />
         </div>
         <div className={`w-full h-full absolute top-0 bg-teal-900`}></div>
       </div>
