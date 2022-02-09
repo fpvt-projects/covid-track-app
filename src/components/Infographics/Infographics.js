@@ -6,14 +6,21 @@ function Infographics({ imageUrl }) {
   const handleClick = () => setToggleImage(!toggleImage);
   return (
     <div
-      className={`h-full mr-2 mb-2 ${
+      className={`h-full mr-2 mb-2  ${
         toggleImage
-          ? "tablet:fixed absolute w-screen h-auto laptop:h-screen top-0 left-0 bg-black/50 flex justify-center cursor-pointer"
+          ? "tablet:fixed absolute w-screen top-0 left-0 bg-black/70 flex justify-center cursor-pointer"
           : "static"
       }`}
       onClick={handleClick}
     >
-      <img className={`h-full cursor-pointer`} src={imageUrl} />
+      <div className={`h-full mx-auto`}>
+        <img
+          className={`${
+            toggleImage ? "w-11/12 tablet:w-auto mx-auto" : "w-auto"
+          }  tablet:h-full  cursor-pointer`}
+          src={imageUrl}
+        />
+      </div>
     </div>
   );
 }
