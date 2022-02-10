@@ -11,6 +11,7 @@ function Posts({ entries, getEntries }) {
           content={item.content}
           id={item.id}
           getEntries={getEntries}
+          date={item.date}
         />
       ))}
     </div>

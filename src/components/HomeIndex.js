@@ -102,7 +102,7 @@ function HomeIndex() {
       <div
         className={`${
           toggleNews ? "w-full" : "w-0"
-        } tablet:w-1/4 duration-300 tablet:static h-full absolute right-0 flex flex-col items-center tablet:bg-teal-900 bg-black/50 overflow-x-hidden overflow-y-auto`}
+        } tablet:w-1/4 duration-300 tablet:static h-full absolute right-0 flex flex-col items-center tablet:bg-slate-800 bg-black/50 overflow-x-hidden overflow-y-auto`}
       >
         <h1
           className={`text-center hidden tablet:block text-white text-4xl my-4 font-semibold tracking-widest`}

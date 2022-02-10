@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import maleAvatar from "../assets/maleAvatar.png";
 import femaleAvatar from "../assets/femaleAvatar.png";
-import axios from "axios";
 import jwt from "jwt-decode";
 
 function Home() {
+  const [currentUser, setCurrentUser] = useState([]);
   const [userEmail, setUserEmail] = useState("");
   const gender = "male";
 
@@ -55,24 +55,35 @@ function Home() {
   const loginRedirect = () => {
     if (sessionStorage.getItem("token") === null) {
       navigate("/covid-tracker-sign_up");
+    } else {
+      const user = jwt(sessionStorage.getItem("token"));
+      setCurrentUser({
+        id: user.id,
+        email: user.email,
+        user_id: user.user_id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        gender: user.gender,
+      });
     }
   };
   const signOut = () => {
     const confirm = window.confirm("Confirm sign out?");
     if (confirm === true) {
       sessionStorage.removeItem("token");
+      navigate("/");
       window.location.reload();
     }
   };
 
   useEffect(() => {
     loginRedirect();
-  });
+  }, []);
 
   return (
     <div className={`flex w-screen h-screen relative flex-col tablet:flex-row`}>
       <div
-        className={`tablet:hidden flex justify-between w-full h-14 bg-teal-900`}
+        className={`tablet:hidden flex justify-between w-full h-14 bg-slate-800`}
       >
         <div className={`w-1/3 h-full flex justify-center items-center`}>
           <button
@@ -105,27 +116,36 @@ function Home() {
       {/* -- START OF SIDEBAR -- */}
 
       <div
-        className={`h-full tablet:w-1/5 w-full bg-teal-900 flex-col items-center z-10 tablet:z-0 absolute top-0 tablet:static ${
+        className={`h-full tablet:w-1/5 w-full bg-slate-800 flex-col items-center z-10 tablet:z-0 absolute top-0 tablet:static ${
           toggleSidebar ? "flex" : "hidden"
         } tablet:flex`}
       >
         {/* User details */}
-        <div className={`w-full h-40 border-b-2 border-teal-800 flex`}>
+        <div className={`w-full h-40 border-b-2 bg-slate-700 flex`}>
           <div className={`flex w-11/12 mx-auto`}>
             <div className={`w-1/3 h-full flex items-center justify-center`}>
               <img
                 className={`w-20 `}
-                src={gender === "male" ? maleAvatar : femaleAvatar}
+                src={currentUser.gender === "Male" ? maleAvatar : femaleAvatar}
                 alt="male"
               />
             </div>
             <div className={`w-2/3 h-full flex flex-col justify-center`}>
               <div>
-                <h1 className={`text-white tracking-widest`}>{userEmail}</h1>
+                <h1
+                  className={`font-bold text-white text-xl`}
+                >{`${currentUser.lastname}, ${currentUser.firstname}`}</h1>
               </div>
               <div>
-                <h1 className={`text-green-500 font-semibold`}>
-                  status: NEGATIVE
+                <h1 className={`text-white text-xs tracking-widest`}>
+                  {currentUser.email}
+                </h1>
+              </div>
+              <div className={`w-20 text-center mt-4 select-none`}>
+                <h1
+                  className={`text-white font-semibold text-xs py-0.5 bg-green-600 rounded-xl`}
+                >
+                  NEGATIVE
                 </h1>
               </div>
             </div>

@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { MdDelete, MdSaveAlt } from "react-icons/md";
+import { BiEdit } from "react-icons/bi";
 
-function Post({ title, content, id, getEntries }) {
+function Post({ title, content, id, getEntries, date }) {
   const [toggleEdit, setToggleEdit] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [newContent, setNewContent] = useState(content);
@@ -46,25 +48,41 @@ function Post({ title, content, id, getEntries }) {
 
   return (
     <div
-      className={`w-full mb-4 flex flex-col bg-gray-200 p-4 rounded ${
+      className={`w-full mb-4 flex flex-col shadow-2xl bg-white p-4 rounded ${
         toggleEdit ? "border border-red-400" : "border-none"
       }`}
     >
-      <div className={`w-full flex flex-row justify-between mb-4`}>
-        <h1 className={` ${toggleEdit ? "hidden" : "block"} font-semibold`}>
-          {title}
-        </h1>
-        <input
-          className={`font-semibold bg-gray-200 ${
-            toggleEdit ? "block" : "hidden"
-          }`}
-          type="text"
-          value={newTitle}
-          onChange={inputNewTitle}
-        />
-        <div className={`text-right`}>
-          <button onClick={clickedEdit}>{toggleEdit ? "Save" : "Edit"}</button>{" "}
-          <button onClick={clickedDelete}>Delete</button>
+      <div
+        className={`w-full flex flex-row justify-between mb-4 whitespace-nowrap`}
+      >
+        <div className={`flex flex-col`}>
+          <h1 className={` ${toggleEdit ? "hidden" : "block"} font-semibold`}>
+            {title}
+          </h1>
+          <input
+            className={`font-semibold  w-full ${
+              toggleEdit ? "block" : "hidden"
+            }`}
+            type="text"
+            value={newTitle}
+            onChange={inputNewTitle}
+          />
+          <h1 className={`text-xs text-gray-400 font-semibold`}>{date}</h1>
+        </div>
+
+        <div className={`ml-2 text-right`}>
+          <button
+            className={`text-2xl text-gray-400 hover:text-blue-800`}
+            onClick={clickedEdit}
+          >
+            {toggleEdit ? <MdSaveAlt /> : <BiEdit />}
+          </button>{" "}
+          <button
+            className={`text-2xl text-gray-400 hover:text-red-500`}
+            onClick={clickedDelete}
+          >
+            <MdDelete />
+          </button>
         </div>
       </div>
 
@@ -72,9 +90,7 @@ function Post({ title, content, id, getEntries }) {
         {content}
       </h1>
       <textarea
-        className={`${
-          toggleEdit ? "block" : "hidden"
-        } bg-gray-200 h-40 tablet:h-auto`}
+        className={`${toggleEdit ? "block" : "hidden"}  h-40 tablet:h-auto`}
         value={newContent}
         onChange={inputNewContent}
       />

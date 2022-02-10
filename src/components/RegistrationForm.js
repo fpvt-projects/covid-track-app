@@ -375,7 +375,7 @@ function AccountDetailsForm() {
       <div className={"mt-8 flex justify-around"}>
         <button
           className={
-            "tracking-widest bg-teal-900 px-6 py-2 rounded font-bold text-white cursoir-pointer mb-8"
+            "tracking-widest bg-slate-800 px-6 py-2 rounded font-bold text-white cursoir-pointer mb-8"
           }
           onClick={handleSubmit}
         >

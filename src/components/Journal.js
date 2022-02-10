@@ -9,7 +9,7 @@ function Journal() {
   const [title, setTitle] = useState("");
 
   let data = jwt(sessionStorage.getItem("token"));
-  let user_id = data.sub;
+  let user_id = data.user_id;
 
   const inputTitle = (e) => setTitle(e.target.value);
   const inputContent = (e) => setContent(e.target.value);
@@ -48,6 +48,7 @@ function Journal() {
             title: item.title,
             content: item.content,
             id: item.id,
+            date: item.created_at,
           });
         });
         setEntries(updatedList);
@@ -84,7 +85,7 @@ function Journal() {
           <div className={`w-full text-right`}>
             <button
               onClick={handleSubmit}
-              className={`w-50 px-4 py-2 outline-none border-0 my-2  rounded text-white hover:bg-teal-700 bg-teal-900`}
+              className={`w-50 px-4 py-2 outline-none border-0 my-2  rounded text-white hover:bg-slate-600 bg-slate-800`}
             >
               SUBMIT
             </button>
@@ -92,7 +93,7 @@ function Journal() {
         </div>
       </div>
       <hr className={`border-t-1 mt-8 border-gray-400 w-full`} />
-      <div className={`w-full h-full overflow-y-auto pt-4`}>
+      <div className={`w-full h-full overflow-y-auto bg-gray-400 pt-4`}>
         <Posts entries={entries} getEntries={getEntries} />
       </div>
     </div>
