@@ -281,20 +281,21 @@ function AccountDetailsForm() {
             onChange={handleInputRegion}
           >
             <option value={null}>-- Please select a region --</option>
-            <option value="Region I - Ilocos Region">
-              Region I - Ilocos Region
-            </option>
-            <option value="Region II - Cagayan Valley">
-              Region II - Cagayan Valley
-            </option>
+            <option value="Region_I">Region_I</option>
+            <option value="Region_II">Region_II</option>
             <option value="NCR">NCR</option>
-            <option value="Region III - Central Luzon">
-              Region III - Central Luzon
-            </option>
-            <option value="Region IV:A - CALABARZON">
-              Region IV:A - CALABARZON
-            </option>
-            <option value="MIMAROPA Region">MIMAROPA Region</option>
+            <option value="Region_III">Region_III</option>
+            <option value="Region_IV:A">Region_IV:A</option>
+            <option value="MIMAROPA">MIMAROPA</option>
+            <option value="Region_VI">Region_VI</option>
+            <option value="Region_VII">Region_VII</option>
+            <option value="Region_VIII">Region_VIII</option>
+            <option value="Region_IX">Region_IX</option>
+            <option value="Region_X">Region_X</option>
+            <option value="Region_XI">Region_XI</option>
+            <option value="Region_XII">Region_XII</option>
+            <option value="CAR">CAR</option>
+            <option value="BARMM">BARMM</option>
           </select>
         </div>
       </div>
