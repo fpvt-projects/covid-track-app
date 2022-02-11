@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import News from "./NewsList/News";
 import CovidChart from "./Chart/CovidChart";
 import axios from "axios";
 
 function Map() {
-  // const [toggleNews, setToggleNews] = useOutletContext();
-  // const [newsList, setNewsList] = useState([]);
-
   const [toggleCount, setToggleCount] = useOutletContext();
   const [apiTotalcount, setApiTotalcount] = useState("");
   const [adpiTotalrecover, setApiTotalrecover] = useState("");
   const [apiDailynewcases, setApiDailynewcases] = useState("");
   const [apiDailynewrecoveries, setApiDailynewrecoveries] = useState("");
   const [apiActivecases, setApiActivecases] = useState("");
+
+  const [total_case, setTotal_Case] = useState("");
+  const [active_cases, setActive_Cases] = useState("");
+  const [daily_new, setDaily_New] = useState("");
+  const [total_recover, setTotal_Recover] = useState("");
+  const [daily_recover, setDaily_Recover] = useState("");
 
   const commafy = (num) => {
     var str = num.toString().split(".");
@@ -43,41 +45,22 @@ function Map() {
       })
       .catch((error) => console.log(error));
 
+    axios
+      .get(`/v1/case_counts`)
+      .then((res) => {
+        if (isApiSubscribed) {
+          setTotal_Case(res.data.total_cases);
+          setActive_Cases(res.data.active_cases);
+          setDaily_New(res.data.daily_new);
+          setTotal_Recover(res.data.total_recoveries);
+          setDaily_Recover(res.data.daily_recovered);
+        }
+      })
+      .catch((error) => console.log(error));
     return () => {
       isApiSubscribed = false;
     };
   }, []);
-
-  // useEffect(() => {
-  //   let isApiSubscribed = true;
-  //   axios
-  //     .get(`/latest-news`, {
-  //       headers: { Authorization: sessionStorage.getItem("token") },
-  //     })
-  //     .then((res) => {
-  //       if (isApiSubscribed) {
-  //         let updatedlist = [];
-  //         res.data.data.articles.forEach((item) => {
-  //           if (item.author === null) {
-  //             item.author = "unknown author";
-  //           }
-  //           updatedlist.push({
-  //             author: item.author,
-  //             title: item.title,
-  //             description: item.description,
-  //             url: item.url,
-  //             urlToImage: item.urlToImage,
-  //           });
-  //         });
-  //         setNewsList(updatedlist);
-  //       }
-  //     })
-  //     .catch((error) => console.log(error));
-
-  //   return () => {
-  //     isApiSubscribed = false;
-  //   };
-  // }, []);
 
   return (
     <div className={`w-full h-full flex relative`}>
@@ -95,7 +78,7 @@ function Map() {
         >
           <h1 className={`font-semibold text-white text-m`}>Total cases:</h1>
           <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiTotalcount} (+123)
+            {apiTotalcount} (+{total_case})
           </h1>
         </div>
         <div
@@ -105,7 +88,7 @@ function Map() {
             Total recoveries:
           </h1>
           <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {adpiTotalrecover} (+1234)
+            {adpiTotalrecover} (+{total_recover})
           </h1>
         </div>
         <div
@@ -113,7 +96,7 @@ function Map() {
         >
           <h1 className={`font-semibold text-white text-m`}>Active cases:</h1>
           <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiActivecases} (+23)
+            {apiActivecases} (+{active_cases})
           </h1>
         </div>
         <div
@@ -123,7 +106,7 @@ function Map() {
             Daily new cases:
           </h1>
           <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiDailynewcases} (+23)
+            {apiDailynewcases} (+{daily_new})
           </h1>
         </div>
         <div
@@ -133,7 +116,7 @@ function Map() {
             Daily recovered:
           </h1>
           <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiDailynewrecoveries} (+12)
+            {apiDailynewrecoveries} (+{daily_recover})
           </h1>
         </div>
       </div>

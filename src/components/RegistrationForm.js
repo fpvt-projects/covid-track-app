@@ -19,7 +19,6 @@ function AccountDetailsForm() {
   const [cellnumber, setCellnumber] = useState("");
   const [birthdate, setBirthdatee] = useState("");
   const [gender, setGender] = useState("");
-  // const [account_id, setAccount_id] = useState("");
 
   const [antigenType, setAntigenType] = useState("");
   const [brand, setBrand] = useState("");
@@ -46,8 +45,22 @@ function AccountDetailsForm() {
 
   const showResultForm = () => setToggleResultForm(!toggleResultForm);
 
-  const createAccount = async () => {
-    await axios
+  const clearInputs = () => {
+    setEmail("");
+    setPassword("");
+    setPasswordConfirmation("");
+    setLastName("");
+    setFirstName("");
+    setMiddleName("");
+    setHouseNumber("");
+    setRegion("");
+    setBirthdatee("");
+    setCellnumber("");
+    setGender("");
+  };
+
+  const createAccount = () => {
+    axios
       .post(`/v1/registrations`, {
         account: {
           email: email,
@@ -56,7 +69,6 @@ function AccountDetailsForm() {
         },
       })
       .then((res) => {
-        // console.log(res.data.account.id);
         let account_id = res.data.account.id;
         createUser(account_id);
       })
@@ -79,7 +91,6 @@ function AccountDetailsForm() {
         },
       })
       .then((res) => {
-        // console.log(res);
         let user_id = res.data.id;
         registerLogin(user_id);
       })
@@ -106,20 +117,6 @@ function AccountDetailsForm() {
         }
       })
       .catch((error) => console.log(error));
-  };
-
-  const clearInputs = () => {
-    setEmail("");
-    setPassword("");
-    setPasswordConfirmation("");
-    setLastName("");
-    setFirstName("");
-    setMiddleName("");
-    setHouseNumber("");
-    setRegion("");
-    setBirthdatee("");
-    setCellnumber("");
-    setGender("");
   };
 
   const submitResult = (user_id, jwToken) => {
@@ -425,10 +422,29 @@ function AccountDetailsForm() {
 
       <div className={"mt-8 flex justify-around"}>
         <button
-          className={
-            "tracking-widest bg-slate-800 px-6 py-2 rounded font-bold text-white cursoir-pointer mb-8"
-          }
+          className={`tracking-widest ${
+            lastname === "" ||
+            firstname === "" ||
+            houseNumber === "" ||
+            region === "" ||
+            cellnumber === "" ||
+            birthdate === "" ||
+            gender === ""
+              ? "bg-gray-300"
+              : "bg-slate-800"
+          }  px-6 py-2 rounded font-bold text-white cursoir-pointer mb-8`}
           onClick={handleSubmit}
+          disabled={
+            lastname === "" ||
+            firstname === "" ||
+            houseNumber === "" ||
+            region === "" ||
+            cellnumber === "" ||
+            birthdate === "" ||
+            gender === ""
+              ? true
+              : false
+          }
         >
           SUBMIT
         </button>

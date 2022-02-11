@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import Infographics from "./Infographics/Infographics";
 import News from "./NewsList/News";
-import indexCoveer from "../assets/indexCoveer.jpg";
+import InforgrafxCarousel from "../components/Infographics/InforgrafxCarousel";
 import doctors from "../assets/doctors.webp";
 
 import axios from "axios";
@@ -50,43 +50,35 @@ function HomeIndex() {
         <div className={``}>
           <img className={`w-full`} src={doctors} />
         </div>
-        <div className={`w-11/12 mx-auto bg-white`}>
-          <div>
-            <h1>Carousel here!</h1>
-          </div>
-          <div className={`w-full h-auto flex flex-col p-4 `}>
-            <h1 className={`tracking-widest font-semibold`}>
-              Covid Preventions
-            </h1>
-            <hr className={`w-full border-t-2 border-black my-2`} />
-            <div className={`h-60 flex flex-wrap overflow-y-auto mb-4`}>
-              <Infographics
-                imageUrl={
-                  "https://decoda.ca/wp-content/uploads/Physical-distancing-infographic-791x1024-1.jpg"
-                }
-              />
-              <Infographics
-                imageUrl={
-                  "https://www.paho.org/en/file/61942/download?token=VhIwWVVD"
-                }
-              />
-              <Infographics
-                imageUrl={
-                  "https://www.who.int/images/default-source/wpro/countries/malaysia/infographics/adolescent-and-covid-19/adolescents-and-covid-19-page-4.png?sfvrsn=1ffc3747_2"
-                }
-              />
-              <Infographics
-                imageUrl={
-                  "https://www.who.int/images/default-source/wpro/countries/philippines/emergencies/covid-19/avoid-the-3cs/slide1.png"
-                }
-              />
-              <Infographics
-                imageUrl={
-                  "https://www.who.int/images/default-source/wpro/countries/philippines/emergencies/covid-19/bahaynihan/stay-at-home-flier-eng-a5-with-branding.png"
-                }
-              />
+        <div className={`w-11/12 pt-4 mx-auto bg-white`}>
+          <div className={`w-full flex items-center flex-col laptop:flex-row`}>
+            <div
+              className={`w-full laptop:w-1/2 h-full laptop:h-400 flex justify-center`}
+            >
+              <InforgrafxCarousel />
             </div>
+            <div className={`w-11/12 laptop:w-1/2 p-8`}>
+              <h1 className={`text-justify`}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+                aliquet urna risus, in feugiat nulla sodales in. Mauris
+                ullamcorper purus ac risus varius, in rhoncus ligula placerat.
+                Etiam imperdiet ultricies velit gravida finibus. Praesent cursus
+                sapien leo, non maximus tortor laoreet a. Proin lacinia lectus
+                non purus elementum dignissim. Sed hendrerit lacus ut lectus
+                cursus vestibulum. Etiam ut ornare lorem. Nullam ante leo,
+                interdum sed ornare sit amet, faucibus id purus. Nullam libero
+                nunc, faucibus non condimentum vitae, interdum et diam. Sed
+                consequat mollis diam vitae pulvinar. Vivamus vel dui risus. In
+                hac habitasse platea dictumst. Vivamus vestibulum ex sit amet
+                imperdiet ultrices. Morbi in quam non nisi venenatis pretium
+                varius et ipsum. Maecenas sodales, sapien eget tincidunt
+                ultricies, ligula tellus hendrerit eros, ac blandit nulla elit
+                ac nisi. Nullam eu lorem non lacus faucibus aliquam.
+              </h1>
+            </div>
+          </div>
 
+          <div className={`w-full h-auto flex flex-col p-4 `}>
             <h1 className={`tracking-widest font-semibold`}>
               Symptoms & Variants
             </h1>
