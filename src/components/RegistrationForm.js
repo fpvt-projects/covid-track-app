@@ -21,6 +21,14 @@ function AccountDetailsForm() {
   const [gender, setGender] = useState("");
   // const [account_id, setAccount_id] = useState("");
 
+  const [antigenType, setAntigenType] = useState("");
+  const [brand, setBrand] = useState("");
+  const [result, setResult] = useState("");
+
+  const inputAntigenType = (e) => setAntigenType(e.target.value);
+  const inputBrand = (e) => setBrand(e.target.value);
+  const inputResult = (e) => setResult(e.target.value);
+
   const [toggleResultForm, setToggleResultForm] = useState(false);
 
   const handleInputEmail = (e) => setEmail(e.target.value);
@@ -41,9 +49,11 @@ function AccountDetailsForm() {
   const createAccount = async () => {
     await axios
       .post(`/v1/registrations`, {
-        email: email,
-        password: password,
-        password_digest: password_confirmation,
+        account: {
+          email: email,
+          password: password,
+          password_confirmation: password_confirmation,
+        },
       })
       .then((res) => {
         // console.log(res.data.account.id);
@@ -70,12 +80,13 @@ function AccountDetailsForm() {
       })
       .then((res) => {
         // console.log(res);
-        registerLogin();
+        let user_id = res.data.id;
+        registerLogin(user_id);
       })
       .catch((error) => console.log(error));
   };
 
-  const registerLogin = () => {
+  const registerLogin = (user_id) => {
     axios
       .post(`/auth`, {
         auth: {
@@ -85,7 +96,14 @@ function AccountDetailsForm() {
       })
       .then((res) => {
         sessionStorage.setItem("token", res.data.jwt);
-        navigate("/");
+
+        let jwToken = res.data.jwt;
+
+        if (antigenType === "") {
+          navigate("/");
+        } else {
+          submitResult(user_id, jwToken);
+        }
       })
       .catch((error) => console.log(error));
   };
@@ -102,6 +120,31 @@ function AccountDetailsForm() {
     setBirthdatee("");
     setCellnumber("");
     setGender("");
+  };
+
+  const submitResult = (user_id, jwToken) => {
+    axios
+      .post(
+        `/v1/result_logs`,
+        {
+          result_log: {
+            antigen_type: antigenType,
+            brand: brand,
+            result: result,
+            user_id: user_id,
+          },
+        },
+        {
+          headers: {
+            Authorization: jwToken,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        navigate("/");
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleSubmit = () => {
@@ -368,7 +411,15 @@ function AccountDetailsForm() {
           : "Click here to input test result."}
       </button>
 
-      <RegistrationTestResultForm toggleResultForm={toggleResultForm} />
+      <RegistrationTestResultForm
+        toggleResultForm={toggleResultForm}
+        antigenType={antigenType}
+        brand={brand}
+        result={result}
+        inputAntigenType={inputAntigenType}
+        inputBrand={inputBrand}
+        inputResult={inputResult}
+      />
 
       <h1 className={"text-red-600 text-center font-semibold my-4"}>{error}</h1>
 

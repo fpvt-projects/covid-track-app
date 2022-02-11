@@ -40,6 +40,10 @@ function Journal() {
     }
   };
 
+  useEffect(() => {
+    getEntries();
+  }, [title === ""]);
+
   const getEntries = () => {
     axios
       .get(`/v1/journals?user_id=${user_id}`, {

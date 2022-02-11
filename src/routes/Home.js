@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import maleAvatar from "../assets/maleAvatar.png";
 import femaleAvatar from "../assets/femaleAvatar.png";
+import { AiOutlineHome } from "react-icons/ai";
+import { BsJournalBookmark } from "react-icons/bs";
+import { BsJournalPlus } from "react-icons/bs";
+import { AiOutlineBarChart } from "react-icons/ai";
 import axios from "axios";
 import jwt from "jwt-decode";
 
@@ -85,7 +89,9 @@ function Home({ resultToggler }) {
   };
 
   useEffect(() => {
-    getResults();
+    if (sessionStorage.getItem("token") !== null) {
+      getResults();
+    }
   }, [resultToggler]);
 
   useEffect(() => {
@@ -156,10 +162,10 @@ function Home({ resultToggler }) {
               <div className={`w-20 text-center mt-4 select-none`}>
                 <h1
                   className={`text-white font-semibold text-xs py-0.5 ${
-                    userStatus === "Negative" ? "bg-green-600" : "bg-red-600"
+                    userStatus === "Positive" ? "bg-red-600" : "bg-green-600"
                   } rounded-xl`}
                 >
-                  {userStatus === "Negative" ? "NEGATIVE" : "POSITIVE"}
+                  {userStatus === "Positive" ? "POSITIVE" : "NEGATIVE"}
                 </h1>
               </div>
             </div>
@@ -171,7 +177,11 @@ function Home({ resultToggler }) {
               onClick={goToHome}
               className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
             >
-              <div className={`w-1/3`}></div>
+              <div className={`w-1/3 flex justify-center items-center`}>
+                <h1 className={`text-white text-lg`}>
+                  <AiOutlineHome />
+                </h1>
+              </div>
               <div className={`w-2/3`}>
                 <h1 className={`select-none`}> HOME</h1>
               </div>
@@ -180,7 +190,9 @@ function Home({ resultToggler }) {
               onClick={goTojournal}
               className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
             >
-              <div className={`w-1/3`}></div>
+              <div className={`w-1/3 flex justify-center items-center`}>
+                <BsJournalBookmark />
+              </div>
               <div className={`w-2/3`}>
                 <h1 className={`select-none`}> MY JOURNAL</h1>
               </div>
@@ -198,7 +210,9 @@ function Home({ resultToggler }) {
               onClick={goToResultLog}
               className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
             >
-              <div className={`w-1/3`}></div>
+              <div className={`w-1/3 flex justify-center items-center`}>
+                <BsJournalPlus />
+              </div>
               <div className={`w-2/3`}>
                 <h1 className={`select-none`}> MY RESULT</h1>
               </div>
@@ -207,7 +221,9 @@ function Home({ resultToggler }) {
               onClick={goTomap}
               className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
             >
-              <div className={`w-1/3`}></div>
+              <div className={`w-1/3 flex justify-center items-center`}>
+                <AiOutlineBarChart />
+              </div>
               <div className={`w-2/3`}>
                 <h1 className={`select-none`}>{`CHART & COUNTS`}</h1>
               </div>

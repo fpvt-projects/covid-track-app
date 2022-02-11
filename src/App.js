@@ -10,7 +10,7 @@ import axios from "axios";
 import "./App.css";
 import { useState } from "react";
 
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://c0v1dtrackingapi.herokuapp.com";
 
 function App() {
   const [resultToggler, setResultToggler] = useState(false);

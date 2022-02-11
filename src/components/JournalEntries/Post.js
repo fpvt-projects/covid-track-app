@@ -24,7 +24,8 @@ function Post({ title, content, id, getEntries, date }) {
           }
         )
         .then(() => {
-          window.location.reload();
+          getEntries();
+          setToggleEdit(!toggleEdit);
         })
         .catch((error) => console.log(error));
     }
@@ -38,7 +39,7 @@ function Post({ title, content, id, getEntries, date }) {
         .delete(`/v1/journals/${id}`, {
           headers: { Authorization: sessionStorage.getItem("token") },
         })
-        .then((res) => window.location.reload())
+        .then((res) => getEntries())
         .catch((error) => console.log(error));
     }
   };
