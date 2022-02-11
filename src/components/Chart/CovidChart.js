@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Bar } from "react-chartjs-3";
 
 export default function CovidChart() {
@@ -10,7 +10,7 @@ export default function CovidChart() {
       {
         label: "Region I - Region VI",
         data: [900, 234, 500, 123, 974, 134, 1345, 1245],
-        backgroundColor: "rgba(255,0,0,0.5)",
+        backgroundColor: "rgba(30, 41, 59,0.9)",
       },
     ],
   };
@@ -19,9 +19,9 @@ export default function CovidChart() {
     labels: ["VIII", "IX", "X", "XI", "XII", "NCR", "CAR", "BARMM"],
     datasets: [
       {
-        label: "Region VII - Region XIII",
+        label: "Region VIII - BARMM",
         data: [90, 1234, 670, 447, 474, 3247, 1345, 145],
-        backgroundColor: "rgba(255,0,0,0.5)",
+        backgroundColor: "rgba(30, 41, 59,0.9)",
       },
     ],
   };

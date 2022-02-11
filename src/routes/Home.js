@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import maleAvatar from "../assets/maleAvatar.png";
 import femaleAvatar from "../assets/femaleAvatar.png";
+import axios from "axios";
 import jwt from "jwt-decode";
 
-function Home() {
+function Home({ resultToggler }) {
   const [currentUser, setCurrentUser] = useState([]);
-  const [userEmail, setUserEmail] = useState("");
-  const gender = "male";
+  const [userStatus, setUserStatus] = useState("");
 
   const [toggleSidebar, setToggleSideBar] = useState(false);
   const [displayCountButton, setDisplayCountButton] = useState(false);
@@ -32,12 +32,6 @@ function Home() {
     setDisplayNewsButton(false);
     showSideBar();
     navigate("/myjournal");
-  };
-  const goTosubmitresult = () => {
-    setDisplayCountButton(false);
-    setDisplayNewsButton(false);
-    showSideBar();
-    navigate("/submit-test-result");
   };
   const goToResultLog = () => {
     setDisplayCountButton(false);
@@ -65,8 +59,22 @@ function Home() {
         lastname: user.lastname,
         gender: user.gender,
       });
+      getResults();
     }
   };
+
+  const getResults = () => {
+    const decoded = jwt(sessionStorage.getItem("token"));
+    axios
+      .get(`/v1/result_logs?user_id=${decoded.user_id}`, {
+        headers: { Authorization: sessionStorage.getItem("token") },
+      })
+      .then((res) => {
+        setUserStatus(res.data.slice(-1)[0].result);
+      })
+      .catch((error) => console.log(error));
+  };
+
   const signOut = () => {
     const confirm = window.confirm("Confirm sign out?");
     if (confirm === true) {
@@ -75,6 +83,10 @@ function Home() {
       window.location.reload();
     }
   };
+
+  useEffect(() => {
+    getResults();
+  }, [resultToggler]);
 
   useEffect(() => {
     loginRedirect();
@@ -143,9 +155,11 @@ function Home() {
               </div>
               <div className={`w-20 text-center mt-4 select-none`}>
                 <h1
-                  className={`text-white font-semibold text-xs py-0.5 bg-green-600 rounded-xl`}
+                  className={`text-white font-semibold text-xs py-0.5 ${
+                    userStatus === "Negative" ? "bg-green-600" : "bg-red-600"
+                  } rounded-xl`}
                 >
-                  NEGATIVE
+                  {userStatus === "Negative" ? "NEGATIVE" : "POSITIVE"}
                 </h1>
               </div>
             </div>
@@ -171,7 +185,7 @@ function Home() {
                 <h1 className={`select-none`}> MY JOURNAL</h1>
               </div>
             </div>
-            <div
+            {/* <div
               onClick={goTosubmitresult}
               className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
             >
@@ -179,14 +193,14 @@ function Home() {
               <div className={`w-2/3`}>
                 <h1 className={`select-none`}> SUBMIT RESULT</h1>
               </div>
-            </div>
+            </div> */}
             <div
               onClick={goToResultLog}
               className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
             >
               <div className={`w-1/3`}></div>
               <div className={`w-2/3`}>
-                <h1 className={`select-none`}> RESULT LOG</h1>
+                <h1 className={`select-none`}> MY RESULT</h1>
               </div>
             </div>
             <div
@@ -226,12 +240,15 @@ function Home() {
       </div>
       <div
         className={
-          "h-4 w-full bg-slate-800 flex justify-center absolute bottom-0 items-center py-2"
+          "h-4 w-full bg-slate-800 flex flex-col tablet:flex-row justify-center absolute bottom-0 items-center py-2"
         }
       >
-        <h1 className={"text-center text-white text-xs"}>
-          This website is intended for learning purpose only.
-        </h1>
+        <a
+          className={`ml-2 text-white text-xs`}
+          href="https://www.freepik.com/vectors/medical"
+        >
+          Medical vector created by stories - www.freepik.com
+        </a>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ function Infographics({ imageUrl }) {
       }`}
       onClick={handleClick}
     >
-      <div className={`h-full mx-auto`}>
+      <div className={`h-full flex justify-center items-center`}>
         <img
           className={`${
             toggleImage ? "w-11/12 tablet:w-auto mx-auto" : "w-auto"

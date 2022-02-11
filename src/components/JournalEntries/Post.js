@@ -55,7 +55,7 @@ function Post({ title, content, id, getEntries, date }) {
       <div
         className={`w-full flex flex-row justify-between mb-4 whitespace-nowrap`}
       >
-        <div className={`flex flex-col`}>
+        <div className={`flex flex-col whitespace-normal w-1/2`}>
           <h1 className={` ${toggleEdit ? "hidden" : "block"} font-semibold`}>
             {title}
           </h1>
@@ -67,7 +67,11 @@ function Post({ title, content, id, getEntries, date }) {
             value={newTitle}
             onChange={inputNewTitle}
           />
-          <h1 className={`text-xs text-gray-400 font-semibold`}>{date}</h1>
+          <h1
+            className={`text-xs text-gray-400 font-semibold whitespace-nowrap`}
+          >
+            {date}
+          </h1>
         </div>
 
         <div className={`ml-2 text-right`}>

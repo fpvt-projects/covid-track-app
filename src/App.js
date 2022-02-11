@@ -8,18 +8,28 @@ import ChartandNews from "./components/ChartandNews";
 import Journal from "./components/Journal";
 import axios from "axios";
 import "./App.css";
+import { useState } from "react";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
+  const [resultToggler, setResultToggler] = useState(false);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}>
+        <Route path="/" element={<Home resultToggler={resultToggler} />}>
           <Route index element={<HomeIndex />} />
           <Route path="myjournal" element={<Journal />} />
           <Route path="submit-test-result" element={<HomeTestResultForm />} />
-          <Route path="result-log" element={<ResultLog />} />
+          <Route
+            path="result-log"
+            element={
+              <ResultLog
+                resultToggler={resultToggler}
+                setResultToggler={setResultToggler}
+              />
+            }
+          />
           <Route path="interactive-map" element={<ChartandNews />} />
         </Route>
         <Route path="/covid-tracker-sign_up" element={<Register />} />

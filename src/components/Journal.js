@@ -15,25 +15,29 @@ function Journal() {
   const inputContent = (e) => setContent(e.target.value);
 
   const handleSubmit = () => {
-    axios
-      .post(
-        `/v1/journals`,
-        {
-          title: title,
-          content: content,
-          user_id: user_id,
-        },
-        {
-          headers: { Authorization: sessionStorage.getItem("token") },
-        }
-      )
-      .then(() => {
-        getEntries();
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (title === "" || content === "") {
+      alert(`Title/content is empty!`);
+    } else {
+      axios
+        .post(
+          `/v1/journals`,
+          {
+            title: title,
+            content: content,
+            user_id: user_id,
+          },
+          {
+            headers: { Authorization: sessionStorage.getItem("token") },
+          }
+        )
+        .then(() => {
+          getEntries();
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   const getEntries = () => {
@@ -84,6 +88,7 @@ function Journal() {
           />
           <div className={`w-full text-right`}>
             <button
+              id="submitBtn"
               onClick={handleSubmit}
               className={`w-50 px-4 py-2 outline-none border-0 my-2  rounded text-white hover:bg-slate-600 bg-slate-800`}
             >
