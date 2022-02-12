@@ -201,7 +201,7 @@ function EditUserProfile() {
         </div>
       </div>
       <button
-        className={`px-4 py-2 font-semibold text-s bg-slate-800 text-white`}
+        className={`px-4 py-2 font-semibold text-s bg-slate-800 text-white mb-16`}
         onClick={handleSubmit}
       >
         UPDATE PROFILE
