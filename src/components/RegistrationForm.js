@@ -83,7 +83,7 @@ function AccountDetailsForm() {
           middlename: middlename,
           firstname: firstname,
           address: houseNumber,
-          city: region,
+          region: region,
           cellnumber: cellnumber,
           birthdate: birthdate,
           gender: gender,
@@ -107,9 +107,7 @@ function AccountDetailsForm() {
       })
       .then((res) => {
         sessionStorage.setItem("token", res.data.jwt);
-
         let jwToken = res.data.jwt;
-
         if (antigenType === "") {
           navigate("/");
         } else {
@@ -157,7 +155,6 @@ function AccountDetailsForm() {
       setError("Please input a valid address.");
     } else {
       createAccount();
-
       clearInputs();
     }
   };

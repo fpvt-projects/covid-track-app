@@ -6,12 +6,14 @@ import { AiOutlineHome } from "react-icons/ai";
 import { BsJournalBookmark } from "react-icons/bs";
 import { BsJournalPlus } from "react-icons/bs";
 import { AiOutlineBarChart } from "react-icons/ai";
+import { IoSettingsOutline } from "react-icons/io5";
 import axios from "axios";
 import jwt from "jwt-decode";
 
 function Home({ resultToggler }) {
   const [currentUser, setCurrentUser] = useState([]);
   const [userStatus, setUserStatus] = useState("");
+  const [gender, setGender] = useState("");
 
   const [toggleSidebar, setToggleSideBar] = useState(false);
   const [displayCountButton, setDisplayCountButton] = useState(false);
@@ -49,6 +51,12 @@ function Home({ resultToggler }) {
     showSideBar();
     navigate("/interactive-map");
   };
+  const goTosettings = () => {
+    setDisplayNewsButton(false);
+    setDisplayCountButton(false);
+    showSideBar();
+    navigate("/settings");
+  };
 
   const loginRedirect = () => {
     if (sessionStorage.getItem("token") === null) {
@@ -56,13 +64,25 @@ function Home({ resultToggler }) {
     } else {
       const user = jwt(sessionStorage.getItem("token"));
       setCurrentUser({
-        id: user.id,
         email: user.email,
-        user_id: user.user_id,
-        firstname: user.firstname,
         lastname: user.lastname,
-        gender: user.gender,
+        firstname: user.firstname,
+        user_id: user.user_id,
       });
+      axios
+        .get(`v1/users`, {
+          headers: {
+            Authorization: sessionStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          res.data.forEach((item) => {
+            if (item.account_id === user.sub) {
+              setGender(item.gender);
+            }
+          });
+        })
+        .catch((error) => console.log(error));
       getResults();
     }
   };
@@ -144,7 +164,7 @@ function Home({ resultToggler }) {
             <div className={`w-1/3 h-full flex items-center justify-center`}>
               <img
                 className={`w-20 `}
-                src={currentUser.gender === "Male" ? maleAvatar : femaleAvatar}
+                src={gender === "Male" ? maleAvatar : femaleAvatar}
                 alt="male"
               />
             </div>
@@ -226,6 +246,17 @@ function Home({ resultToggler }) {
               </div>
               <div className={`w-2/3`}>
                 <h1 className={`select-none`}>{`CHART & COUNTS`}</h1>
+              </div>
+            </div>
+            <div
+              onClick={goTosettings}
+              className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
+            >
+              <div className={`w-1/3 flex justify-center items-center`}>
+                <IoSettingsOutline />
+              </div>
+              <div className={`w-2/3`}>
+                <h1 className={`select-none`}>{`SETTINGS`}</h1>
               </div>
             </div>
           </div>
