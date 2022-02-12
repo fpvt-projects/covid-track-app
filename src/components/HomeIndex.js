@@ -48,7 +48,7 @@ function HomeIndex() {
         className={`w-full tablet:w-3/4 duration-300 bg-gray-200 h-full overflow-y-auto`}
       >
         <div className={``}>
-          <img className={`w-full`} src={doctors} />
+          <img alt="" className={`w-full`} src={doctors} />
         </div>
         <div className={`w-11/12 pt-4 mx-auto bg-white`}>
           <div className={`w-full flex items-center flex-col laptop:flex-row`}>
@@ -118,58 +118,6 @@ function HomeIndex() {
           <News newsList={newsList} />
         </div>
       </div>
-      {/* <div
-        className={`${
-          toggleCount ? "w-full" : "w-0"
-        } tablet:w-1/4 duration-300 tablet:static h-full absolute right-0 flex flex-col items-center tablet:bg-teal-900 bg-black/50 overflow-x-hidden overflow-y-auto`}
-      >
-        <div
-          className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-8 shadow-2xl flex flex-col justify-center px-4`}
-        >
-          <h1 className={`font-semibold text-white text-m`}>Total cases:</h1>
-          <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiTotalcount} (+123)
-          </h1>
-        </div>
-        <div
-          className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
-        >
-          <h1 className={`font-semibold text-white text-m`}>
-            Total recoveries:
-          </h1>
-          <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {adpiTotalrecover} (+1234)
-          </h1>
-        </div>
-        <div
-          className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
-        >
-          <h1 className={`font-semibold text-white text-m`}>Active cases:</h1>
-          <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiActivecases} (+23)
-          </h1>
-        </div>
-        <div
-          className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
-        >
-          <h1 className={`font-semibold text-white text-m`}>
-            Daily new cases:
-          </h1>
-          <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiDailynewcases} (+23)
-          </h1>
-        </div>
-        <div
-          className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
-        >
-          <h1 className={`font-semibold text-white text-m`}>
-            Daily recovered:
-          </h1>
-          <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiDailynewrecoveries} (+12)
-          </h1>
-        </div>
-      </div> */}
     </div>
   );
 }

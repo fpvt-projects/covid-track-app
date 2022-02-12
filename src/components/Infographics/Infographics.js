@@ -15,6 +15,7 @@ function Infographics({ imageUrl }) {
     >
       <div className={`h-full flex justify-center items-center`}>
         <img
+          alt=""
           className={`${
             toggleImage ? "w-11/12 tablet:w-auto mx-auto" : "w-auto"
           }  tablet:h-full  cursor-pointer`}

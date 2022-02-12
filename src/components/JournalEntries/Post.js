@@ -2,15 +2,31 @@ import axios from "axios";
 import React, { useState } from "react";
 import { MdDelete, MdSaveAlt } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
+import jwt from "jwt-decode";
 
 function Post({ title, content, id, getEntries, date }) {
   const [toggleEdit, setToggleEdit] = useState(false);
-  const [newTitle, setNewTitle] = useState(title);
-  const [newContent, setNewContent] = useState(content);
+  const [newTitle, setNewTitle] = useState("");
+  const [newContent, setNewContent] = useState("");
 
   const clickedEdit = () => {
     if (toggleEdit === false) {
-      setToggleEdit(!toggleEdit);
+      let decoded = jwt(sessionStorage.getItem("token"));
+
+      axios
+        .get(`/v1/journals?user_id=${decoded.user_id}`, {
+          headers: { Authorization: sessionStorage.getItem("token") },
+        })
+        .then((res) => {
+          res.data.forEach((item) => {
+            if (item.id === id) {
+              setNewTitle(item.title);
+              setNewContent(item.content);
+            }
+          });
+          setToggleEdit(!toggleEdit);
+        })
+        .catch((error) => console.log(error));
     } else {
       axios
         .patch(

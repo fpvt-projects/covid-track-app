@@ -19,7 +19,7 @@ function ResultForm({
             Antigen Type
           </h1>
           <select
-            className={`w-full cursor-pointer outline-none`}
+            className={`w-full cursor-pointer outline-none bg-white`}
             value={antigenType}
             onChange={inputAntigenType}
           >

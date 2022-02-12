@@ -32,7 +32,8 @@ function Journal() {
         )
         .then(() => {
           getEntries();
-          window.location.reload();
+          setTitle("");
+          setContent("");
         })
         .catch((error) => {
           console.log(error);

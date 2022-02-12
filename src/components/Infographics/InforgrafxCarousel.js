@@ -15,19 +15,32 @@ function infografxCarousel() {
           <img
             className={`w-full`}
             src="https://decoda.ca/wp-content/uploads/Physical-distancing-infographic-791x1024-1.jpg"
+            alt=""
           />
         </div>
         <div>
-          <img src="https://www.paho.org/en/file/61942/download?token=VhIwWVVD" />
+          <img
+            src="https://www.paho.org/en/file/61942/download?token=VhIwWVVD"
+            alt=""
+          />
         </div>
         <div className={``}>
-          <img src="https://www.who.int/images/default-source/wpro/countries/malaysia/infographics/adolescent-and-covid-19/adolescents-and-covid-19-page-4.png?sfvrsn=1ffc3747_2" />
+          <img
+            alt=""
+            src="https://www.who.int/images/default-source/wpro/countries/malaysia/infographics/adolescent-and-covid-19/adolescents-and-covid-19-page-4.png?sfvrsn=1ffc3747_2"
+          />
         </div>
         <div>
-          <img src="https://www.who.int/images/default-source/wpro/countries/philippines/emergencies/covid-19/avoid-the-3cs/slide1.png" />
+          <img
+            alt=""
+            src="https://www.who.int/images/default-source/wpro/countries/philippines/emergencies/covid-19/avoid-the-3cs/slide1.png"
+          />
         </div>
         <div>
-          <img src="https://www.who.int/images/default-source/wpro/countries/philippines/emergencies/covid-19/bahaynihan/stay-at-home-flier-eng-a5-with-branding.png" />
+          <img
+            alt=""
+            src="https://www.who.int/images/default-source/wpro/countries/philippines/emergencies/covid-19/bahaynihan/stay-at-home-flier-eng-a5-with-branding.png"
+          />
         </div>
       </Carousel>
     </div>

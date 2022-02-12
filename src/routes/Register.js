@@ -25,7 +25,7 @@ function Register() {
     <div className="w-screen flex flex-col h-screen overflow-hidden select-none">
       <div className="w-full h-12 bg-slate-800 flex justify-between items-center px-12">
         <div className={`h-full flex items-center`}>
-          <img className={`h-3/5 mr-2`} src={HealthLogo} />
+          <img className={`h-3/5 mr-2`} src={HealthLogo} alt="" />
           <h1 className="text-white font-bold tracking-widest text-xl tablet:block hidden">
             COVID TRACKING APP
           </h1>

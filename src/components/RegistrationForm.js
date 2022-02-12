@@ -316,7 +316,7 @@ function AccountDetailsForm() {
         >
           <h1 className={`text-xs select-none text-gray-400 ml-1`}>Region</h1>
           <select
-            className={`w-full cursor-pointer outline-none`}
+            className={`w-full cursor-pointer outline-none bg-white`}
             value={region}
             onChange={handleInputRegion}
           >
@@ -350,7 +350,7 @@ function AccountDetailsForm() {
               Birthdate
             </h1>
             <input // Birthdate
-              className={`pl-2 outline-none w-full cursor-pointer`}
+              className={`pl-2 outline-none w-full cursor-pointer bg-white`}
               onChange={handleInputBirthdate}
               value={birthdate}
               type="date"

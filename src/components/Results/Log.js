@@ -26,7 +26,7 @@ function Log({ date, status, count, id, result_log_id, setUserState }) {
       .then((res) => {
         let updatedList = [];
         res.data.forEach((item) => {
-          if (item.id == result_log_id) {
+          if (item.id === result_log_id) {
             updatedList.push({
               antigen_type: item.antigen_type,
               result: item.result,
