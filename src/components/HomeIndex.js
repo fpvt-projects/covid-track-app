@@ -114,7 +114,7 @@ function HomeIndex() {
         >
           NEWS UPDATES
         </h1>
-        <div className={`w-full overflow-y-auto flex justify-center`}>
+        <div className={`w-full overflow-y-auto flex justify-center z-10`}>
           <News newsList={newsList} />
         </div>
       </div>

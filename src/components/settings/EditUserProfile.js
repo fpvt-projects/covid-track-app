@@ -81,9 +81,7 @@ function EditUserProfile() {
   }, []);
 
   return (
-    <div
-      className={`w-full h-11/12 mb-8laptop:w-1/2 flex flex-col pt-10 px-4 `}
-    >
+    <div className={`w-full mb-8 laptop:w-1/2 flex flex-col pt-10 px-4 pb-14`}>
       <h1 className={`text-2xl font-semibold mb-4`}>
         EDIT ACCOUNT INFORMATION:
       </h1>
@@ -201,7 +199,7 @@ function EditUserProfile() {
         </div>
       </div>
       <button
-        className={`px-4 py-2 font-semibold text-s bg-slate-800 text-white mb-16`}
+        className={`px-4 py-2 font-semibold text-s bg-slate-800 text-white`}
         onClick={handleSubmit}
       >
         UPDATE PROFILE
