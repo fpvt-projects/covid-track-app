@@ -4,13 +4,8 @@ import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function infografxCarousel() {
   return (
-    <div className={`w-4/5`}>
-      <Carousel
-        infiniteLoop="true"
-        dynamicHeight="true"
-        centerMode="true"
-        autoPlay="true"
-      >
+    <div className={`w-4/5 h-100`}>
+      <Carousel infiniteLoop="true" centerMode="true" autoPlay="true">
         <div className={`h-full`}>
           <img
             className={`w-full`}
@@ -22,12 +17,6 @@ function infografxCarousel() {
           <img
             src="https://www.paho.org/en/file/61942/download?token=VhIwWVVD"
             alt=""
-          />
-        </div>
-        <div className={``}>
-          <img
-            alt=""
-            src="https://www.who.int/images/default-source/wpro/countries/malaysia/infographics/adolescent-and-covid-19/adolescents-and-covid-19-page-4.png?sfvrsn=1ffc3747_2"
           />
         </div>
         <div>

@@ -8,7 +8,7 @@ function Infographics({ imageUrl }) {
     <div
       className={`h-full mr-2 mb-2  ${
         toggleImage
-          ? "tablet:fixed absolute w-screen top-0 left-0 bg-black/70 flex justify-center cursor-pointer"
+          ? "tablet:fixed absolute z-30 w-screen top-0 left-0 bg-black/70 flex justify-center cursor-pointer"
           : "static"
       }`}
       onClick={handleClick}

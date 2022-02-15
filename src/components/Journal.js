@@ -95,7 +95,13 @@ function Journal() {
             <button
               id="submitBtn"
               onClick={handleSubmit}
-              className={`w-50 px-4 py-2 outline-none border-0 my-2  rounded text-white hover:bg-slate-600 bg-slate-800`}
+              className={`w-50 px-4 py-2 outline-none border-0 my-2  rounded text-white 
+              ${
+                title === "" || content === ""
+                  ? "bg-gray-300 cursor-default"
+                  : "bg-slate-800 cursor-pointer"
+              } `}
+              disabled={title === "" || content === "" ? true : false}
             >
               SUBMIT
             </button>

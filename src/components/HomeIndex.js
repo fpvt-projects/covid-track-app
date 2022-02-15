@@ -50,30 +50,32 @@ function HomeIndex() {
         <div className={``}>
           <img alt="" className={`w-full`} src={doctors} />
         </div>
-        <div className={`w-11/12 pt-4 mx-auto bg-white`}>
-          <div className={`w-full flex items-center flex-col laptop:flex-row`}>
+
+        <div className={`w-11/12 mx-auto bg-white`}>
+          <div
+            className={`w-full flex items-center flex-col laptop:flex-row mt-8 pt-8`}
+          >
             <div
               className={`w-full laptop:w-1/2 h-full laptop:h-400 flex justify-center`}
             >
               <InforgrafxCarousel />
             </div>
             <div className={`w-11/12 laptop:w-1/2 p-8`}>
-              <h1 className={`text-justify`}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                aliquet urna risus, in feugiat nulla sodales in. Mauris
-                ullamcorper purus ac risus varius, in rhoncus ligula placerat.
-                Etiam imperdiet ultricies velit gravida finibus. Praesent cursus
-                sapien leo, non maximus tortor laoreet a. Proin lacinia lectus
-                non purus elementum dignissim. Sed hendrerit lacus ut lectus
-                cursus vestibulum. Etiam ut ornare lorem. Nullam ante leo,
-                interdum sed ornare sit amet, faucibus id purus. Nullam libero
-                nunc, faucibus non condimentum vitae, interdum et diam. Sed
-                consequat mollis diam vitae pulvinar. Vivamus vel dui risus. In
-                hac habitasse platea dictumst. Vivamus vestibulum ex sit amet
-                imperdiet ultrices. Morbi in quam non nisi venenatis pretium
-                varius et ipsum. Maecenas sodales, sapien eget tincidunt
-                ultricies, ligula tellus hendrerit eros, ac blandit nulla elit
-                ac nisi. Nullam eu lorem non lacus faucibus aliquam.
+              <h1 className={`font-semibold`}>Covid tracker project 2022</h1>
+              <br />{" "}
+              <h1 className={`text-justify tracking-widest text-sm`}>
+                Coronavirus disease is an infectious disease caused by the
+                SARS-CoV2 virus. Most people who fall sick with COVID-19 will
+                experience mild to moderate symptoms and recover without special
+                treatment. However, some will become seriously ill and require
+                medical attention. <br /> <br />
+                This project aims to help in collecting covid data from
+                consumers that used test-kits bought from online stores. <br />
+                <br />
+                With this project, users are able to create journal entries to
+                help monitor their daily conditions. The project also enable
+                users to submit their covid test results in order to help track
+                records of covid cases.
               </h1>
             </div>
           </div>

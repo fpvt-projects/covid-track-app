@@ -39,7 +39,8 @@ function AccountDetailsForm() {
   const handleInputMiddlename = (e) => setMiddleName(e.target.value);
   const handleInputHouseNumber = (e) => setHouseNumber(e.target.value);
   const handleInputRegion = (e) => setRegion(e.target.value);
-  const handleInputCellnumber = (e) => setCellnumber(e.target.value);
+  const handleInputCellnumber = (e) =>
+    setCellnumber(e.target.value.replace(/\D/g, ""));
   const handleInputBirthdate = (e) => setBirthdatee(e.target.value);
   const handleInputGender = (e) => setGender(e.target.value);
 
@@ -69,6 +70,7 @@ function AccountDetailsForm() {
         },
       })
       .then((res) => {
+        console.log(res);
         let account_id = res.data.account.id;
         createUser(account_id);
       })
@@ -109,6 +111,7 @@ function AccountDetailsForm() {
         sessionStorage.setItem("token", res.data.jwt);
         let jwToken = res.data.jwt;
         if (antigenType === "") {
+          clearInputs();
           navigate("/");
         } else {
           submitResult(user_id, jwToken);
@@ -137,6 +140,7 @@ function AccountDetailsForm() {
       )
       .then((res) => {
         console.log(res);
+        clearInputs();
         navigate("/");
       })
       .catch((error) => console.log(error));
@@ -155,7 +159,6 @@ function AccountDetailsForm() {
       setError("Please input a valid address.");
     } else {
       createAccount();
-      clearInputs();
     }
   };
 

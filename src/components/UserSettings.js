@@ -7,7 +7,7 @@ function UserSettings() {
   const goToEditprofile = () => navigate("/settings");
   const goToAboutus = () => navigate("about_us");
   return (
-    <div className={`w-full h-full bg-blue-100`}>
+    <div className={`w-full h-full bg-gray-200`}>
       <div className={`flex flex-col laptop:flex-row w-full h-full p-0`}>
         <nav
           className={`w-full px-4 laptop:pt-4 flex flex-row laptop:flex-col laptop:w-40 h-12 items-center laptop:h-full bg-white`}
@@ -26,7 +26,7 @@ function UserSettings() {
           </h1>
         </nav>
         <div
-          className={`w-full laptop:w-2/3 h-full border-t-2 laptop:border-l-2 flex justify-center bg-white`}
+          className={`w-full laptop:w-2/3 h-full border-t-2 laptop:border-t-0 laptop:border-l-2 flex justify-center bg-white `}
         >
           <Outlet />
         </div>

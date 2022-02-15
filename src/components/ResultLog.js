@@ -95,7 +95,14 @@ function ResultLog({ setUserState, setResultToggler, resultToggler }) {
         </div>
         <button
           onClick={submitResult}
-          className={`px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-600 mt-4`}
+          className={`px-4 py-2 text-white rounded ${
+            antigenType === "" || brand === "" || result === ""
+              ? "bg-slate-300 cursor-default"
+              : "bg-slate-800 cursor-pointer"
+          } mt-4`}
+          disabled={
+            antigenType === "" || brand === "" || result === "" ? true : false
+          }
         >
           SUBMIT
         </button>

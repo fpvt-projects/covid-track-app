@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import CovidChart from "./Chart/CovidChart";
 import axios from "axios";
+import CaseCounts from "./CaseCounts/CaseCounts";
+import Cases from "./CaseCounts/Cases";
 
 function Map() {
   const [toggleCount, setToggleCount] = useOutletContext();
@@ -66,75 +68,56 @@ function Map() {
     <div className={`w-full h-full flex relative`}>
       <div className={`w-full tablet:w-3/4 ease-in-out duration-300 h-full`}>
         <CovidChart />
+        <h1
+          className={`text-sm tracking-wides font-semibold text-gray-400 text-center`}
+        >
+          ** static only, no available data for now**
+        </h1>
       </div>
 
       <div
         className={`${
           toggleCount ? "w-full" : "w-0"
-        } tablet:w-1/4 duration-300 tablet:static h-full absolute right-0 flex flex-col items-center tablet:bg-slate-800 bg-black/60 overflow-x-hidden overflow-y-auto`}
+        } tablet:w-1/3 duration-300 tablet:static h-full absolute right-0 flex flex-col items-center tablet:bg-slate-800 bg-black/60 overflow-x-hidden overflow-y-auto`}
       >
-        <div
-          className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-8 shadow-2xl flex flex-col justify-center px-4`}
-        >
-          <h1 className={`font-semibold text-white text-m`}>Total cases:</h1>
-          <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiTotalcount} (+{total_case})
-          </h1>
-        </div>
-        <div
-          className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
-        >
-          <h1 className={`font-semibold text-white text-m`}>
-            Total recoveries:
-          </h1>
-          <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {adpiTotalrecover} (+{total_recover})
-          </h1>
-        </div>
-        <div
-          className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
-        >
-          <h1 className={`font-semibold text-white text-m`}>Active cases:</h1>
-          <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiActivecases} (+{active_cases})
-          </h1>
-        </div>
-        <div
-          className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
-        >
-          <h1 className={`font-semibold text-white text-m`}>
-            Daily new cases:
-          </h1>
-          <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiDailynewcases} (+{daily_new})
-          </h1>
-        </div>
-        <div
-          className={`w-11/12 h-24 bg-gradient-to-br from-cyan-700 to-cyan-800 rounded mt-4 shadow-2xl flex flex-col justify-center px-4`}
-        >
-          <h1 className={`font-semibold text-white text-m`}>
-            Daily recovered:
-          </h1>
-          <h1 className={`font-semibold text-right text-white text-2xl`}>
-            {apiDailynewrecoveries} (+{daily_recover})
-          </h1>
-        </div>
+        <Cases
+          apiTotalcount={apiTotalcount}
+          total_case={total_case}
+          apiActivecases={apiActivecases}
+          active_cases={active_cases}
+          apiDailynewcases={apiDailynewcases}
+          daily_new={daily_new}
+          adpiTotalrecover={adpiTotalrecover}
+          total_recover={total_recover}
+          apiDailynewrecoveries={apiDailynewrecoveries}
+          daily_recover={daily_recover}
+        />
+        {/* <CaseCounts
+          apidata={apiTotalcount}
+          appdata={total_case}
+          title="Total cases:"
+        />
+        <CaseCounts
+          apidata={adpiTotalrecover}
+          appdata={total_recover}
+          title="Total recoveries:"
+        />
+        <CaseCounts
+          apidata={apiActivecases}
+          appdata={active_cases}
+          title="Active cases:"
+        />
+        <CaseCounts
+          apidata={apiDailynewcases}
+          appdata={daily_new}
+          title="Daily new cases:"
+        />
+        <CaseCounts
+          apidata={apiDailynewrecoveries}
+          appdata={daily_recover}
+          title="Daily recovered:"
+        /> */}
       </div>
-
-      {/* <div
-        className={`${
-          toggleNews ? "w-full" : "w-0"
-        } tablet:w-1/4 duration-300 tablet:static h-full absolute right-0 flex flex-col items-center tablet:bg-teal-900 bg-black/50 overflow-x-hidden overflow-y-auto`}
-      >
-        <h1
-          className={`text-center hidden tablet:block text-white text-4xl my-4 font-semibold tracking-widest`}
-        >
-          NEWS UPDATES
-        </h1>
-        <div className={`w-full overflow-y-auto flex justify-center`}>
-          <News newsList={newsList} />
-        </div>
-      </div> */}
     </div>
   );
 }
