@@ -1,36 +1,27 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Bar } from "react-chartjs-3";
 
 export default function CovidChart() {
   let chartReference = {};
 
   const data1 = {
-    labels: ["I", "II", "III", "IV:A", "MIMAROPA", "IV:B", "V", "VI", "VII"],
+    labels: ["I", "II", "III", "IV:A", "MIMAROPA", "V", "VI", "VII"],
     datasets: [
       {
         label: "Region I - Region VI",
-        data: [900, 234, 500, 3247, 974, 134, 1345, 1245, 1],
-        backgroundColor: "rgba(255,0,0,0.5)",
+        data: [900, 234, 500, 123, 974, 134, 1345, 1245],
+        backgroundColor: "rgba(30, 41, 59,0.9)",
       },
     ],
   };
 
   const data2 = {
-    labels: [
-      "Region I",
-      "Region II",
-      "Region III",
-      "Region IV:A",
-      "MIMAROPA",
-      "Region IV:B",
-      "Region V",
-      "Region VI",
-    ],
+    labels: ["VIII", "IX", "X", "XI", "XII", "NCR", "CAR", "BARMM"],
     datasets: [
       {
-        label: "Region VII - Region XIII",
-        data: [90, 1234, 670, 447, 474, 5, 1345, 145],
-        backgroundColor: "rgba(255,0,0,0.5)",
+        label: "Region VIII - BARMM",
+        data: [90, 1234, 670, 447, 474, 3247, 1345, 145],
+        backgroundColor: "rgba(30, 41, 59,0.9)",
       },
     ],
   };

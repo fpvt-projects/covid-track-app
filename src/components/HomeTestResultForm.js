@@ -15,7 +15,7 @@ function HomeTestResultForm() {
         <ResultForm />
         <button
           className={
-            "tracking-widest bg-teal-900 px-6 py-2 mt-4 rounded font-bold text-white cursoir-pointer mb-8 select-none"
+            "tracking-widest bg-slate-800 px-6 py-2 mt-4 rounded font-bold text-white cursoir-pointer mb-8 select-none"
           }
           onClick={handleSubmit}
         >

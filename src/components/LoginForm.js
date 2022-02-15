@@ -22,7 +22,6 @@ function LoginForm() {
       axios
         .post(`/auth`, { auth: { email: email, password: password } })
         .then((res) => {
-          console.log(res);
           sessionStorage.setItem("token", res.data.jwt);
           navigate("/");
         })
@@ -110,11 +109,11 @@ function LoginForm() {
 
       <button
         className={
-          "tracking-widest bg-teal-900 hover:bg-teal-700 px-6 py-2 rounded mt-2 font-bold text-white cursoir-pointer mb-8"
+          "tracking-widest bg-slate-800 hover:bg-slate-600 px-6 py-2 rounded mt-2 font-bold text-white cursoir-pointer mb-8"
         }
         onClick={handleLogin}
       >
-        LOG IN
+        LOGIN
       </button>
     </div>
   );

@@ -1,17 +1,33 @@
 import React, { useState } from "react";
 import RegistrationTestResultForm from "./RegistrationTestResultForm";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AccountDetailsForm() {
+  const navigate = useNavigate();
   const [error, setError] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
+
   const [lastname, setLastName] = useState("");
   const [firstname, setFirstName] = useState("");
   const [middlename, setMiddleName] = useState("");
   const [houseNumber, setHouseNumber] = useState("");
   const [region, setRegion] = useState("");
+  const [cellnumber, setCellnumber] = useState("");
+  const [birthdate, setBirthdatee] = useState("");
+  const [gender, setGender] = useState("");
+
+  const [antigenType, setAntigenType] = useState("");
+  const [brand, setBrand] = useState("");
+  const [result, setResult] = useState("");
+
+  const inputAntigenType = (e) => setAntigenType(e.target.value);
+  const inputBrand = (e) => setBrand(e.target.value);
+  const inputResult = (e) => setResult(e.target.value);
+
   const [toggleResultForm, setToggleResultForm] = useState(false);
 
   const handleInputEmail = (e) => setEmail(e.target.value);
@@ -23,7 +39,112 @@ function AccountDetailsForm() {
   const handleInputMiddlename = (e) => setMiddleName(e.target.value);
   const handleInputHouseNumber = (e) => setHouseNumber(e.target.value);
   const handleInputRegion = (e) => setRegion(e.target.value);
+  const handleInputCellnumber = (e) =>
+    setCellnumber(e.target.value.replace(/\D/g, ""));
+  const handleInputBirthdate = (e) => setBirthdatee(e.target.value);
+  const handleInputGender = (e) => setGender(e.target.value);
+
   const showResultForm = () => setToggleResultForm(!toggleResultForm);
+
+  const clearInputs = () => {
+    setEmail("");
+    setPassword("");
+    setPasswordConfirmation("");
+    setLastName("");
+    setFirstName("");
+    setMiddleName("");
+    setHouseNumber("");
+    setRegion("");
+    setBirthdatee("");
+    setCellnumber("");
+    setGender("");
+  };
+
+  const createAccount = () => {
+    axios
+      .post(`/v1/registrations`, {
+        account: {
+          email: email,
+          password: password,
+          password_confirmation: password_confirmation,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        let account_id = res.data.account.id;
+        createUser(account_id);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const createUser = (account_id) => {
+    axios
+      .post(`/v1/users`, {
+        user: {
+          lastname: lastname,
+          middlename: middlename,
+          firstname: firstname,
+          address: houseNumber,
+          region: region,
+          cellnumber: cellnumber,
+          birthdate: birthdate,
+          gender: gender,
+          account_id: account_id,
+        },
+      })
+      .then((res) => {
+        let user_id = res.data.id;
+        registerLogin(user_id);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const registerLogin = (user_id) => {
+    axios
+      .post(`/auth`, {
+        auth: {
+          email: email,
+          password: password,
+        },
+      })
+      .then((res) => {
+        sessionStorage.setItem("token", res.data.jwt);
+        let jwToken = res.data.jwt;
+        if (antigenType === "") {
+          clearInputs();
+          navigate("/");
+        } else {
+          submitResult(user_id, jwToken);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const submitResult = (user_id, jwToken) => {
+    axios
+      .post(
+        `/v1/result_logs`,
+        {
+          result_log: {
+            antigen_type: antigenType,
+            brand: brand,
+            result: result,
+            user_id: user_id,
+          },
+        },
+        {
+          headers: {
+            Authorization: jwToken,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        clearInputs();
+        navigate("/");
+      })
+      .catch((error) => console.log(error));
+  };
 
   const handleSubmit = () => {
     if (email === "") {
@@ -34,18 +155,10 @@ function AccountDetailsForm() {
       setError("Please confirm your password.");
     } else if (lastname === "" || firstname === "" || middlename === "") {
       setError("Please input a complete name.");
-    } else if (houseNumber === "" || ServiceWorkerRegistration === "") {
+    } else if (houseNumber === "" || region === "") {
       setError("Please input a valid address.");
     } else {
-      alert("Successfully registered!");
-      setEmail("");
-      setPassword("");
-      setPasswordConfirmation("");
-      setLastName("");
-      setFirstName("");
-      setMiddleName("");
-      setHouseNumber("");
-      setRegion("");
+      createAccount();
     }
   };
 
@@ -203,24 +316,26 @@ function AccountDetailsForm() {
         >
           <h1 className={`text-xs select-none text-gray-400 ml-1`}>Region</h1>
           <select
-            className={`w-full cursor-pointer outline-none`}
+            className={`w-full cursor-pointer outline-none bg-white`}
             value={region}
             onChange={handleInputRegion}
           >
             <option value={null}>-- Please select a region --</option>
-            <option value="Region I - Ilocos Region">
-              Region I - Ilocos Region
-            </option>
-            <option value="Region II - Cagayan Valley">
-              Region II - Cagayan Valley
-            </option>
-            <option value="Region III - Central Luzon">
-              Region III - Central Luzon
-            </option>
-            <option value="Region IV:A - CALABARZON">
-              Region IV:A - CALABARZON
-            </option>
-            <option value="MIMAROPA Region">MIMAROPA Region</option>
+            <option value="Region_I">Region_I</option>
+            <option value="Region_II">Region_II</option>
+            <option value="NCR">NCR</option>
+            <option value="Region_III">Region_III</option>
+            <option value="Region_IV:A">Region_IV:A</option>
+            <option value="MIMAROPA">MIMAROPA</option>
+            <option value="Region_VI">Region_VI</option>
+            <option value="Region_VII">Region_VII</option>
+            <option value="Region_VIII">Region_VIII</option>
+            <option value="Region_IX">Region_IX</option>
+            <option value="Region_X">Region_X</option>
+            <option value="Region_XI">Region_XI</option>
+            <option value="Region_XII">Region_XII</option>
+            <option value="CAR">CAR</option>
+            <option value="BARMM">BARMM</option>
           </select>
         </div>
       </div>
@@ -230,25 +345,16 @@ function AccountDetailsForm() {
         <p className="font-semibold mt-4 ">Additional information:</p>
 
         <div className={`w-full h-12 border mb-2 border-black rounded`}>
-          <div className={`flex flex-row`}>
-            <div>
-              <h1 className={`text-xs select-none text-gray-400 ml-1`}>Age</h1>
-              <input // Age
-                className={`pl-2 outline-none w-full cursor-pointer`}
-                type="text"
-                maxLength={2}
-                pattern="[0-9]+"
-              />
-            </div>
-            <div className={`w-2/3`}>
-              <h1 className={`text-xs select-none text-gray-400 ml-1`}>
-                Birthdate
-              </h1>
-              <input // Birthdate
-                className={`pl-2 outline-none w-full cursor-pointer`}
-                type="date"
-              />
-            </div>
+          <div className={`w-11/12`}>
+            <h1 className={`text-xs select-none text-gray-400 ml-1`}>
+              Birthdate
+            </h1>
+            <input // Birthdate
+              className={`pl-2 outline-none w-full cursor-pointer bg-white`}
+              onChange={handleInputBirthdate}
+              value={birthdate}
+              type="date"
+            />
           </div>
         </div>
         <div className={`w-full h-12 border mb-2 border-black rounded`}>
@@ -257,6 +363,8 @@ function AccountDetailsForm() {
           </h1>
           <input // Contact
             className={`pl-2 outline-none w-full cursor-pointer`}
+            onChange={handleInputCellnumber}
+            value={cellnumber}
             type="text"
             maxLength={11}
           />
@@ -268,18 +376,20 @@ function AccountDetailsForm() {
         <div className={"w-full flex justify-around"}>
           <div>
             <input // Gender Male
+              onChange={handleInputGender}
               className={"mr-2 cursor-pointer"}
               type="radio"
-              value="male"
+              value="Male"
               name="gender"
             />
             Male
           </div>
           <div>
             <input // Gender Female
+              onChange={handleInputGender}
               className={"mr-2 cursor-pointer"}
               type="radio"
-              value="female"
+              value="Female"
               name="gender"
             />
             Female
@@ -298,16 +408,43 @@ function AccountDetailsForm() {
           : "Click here to input test result."}
       </button>
 
-      <RegistrationTestResultForm toggleResultForm={toggleResultForm} />
+      <RegistrationTestResultForm
+        toggleResultForm={toggleResultForm}
+        antigenType={antigenType}
+        brand={brand}
+        result={result}
+        inputAntigenType={inputAntigenType}
+        inputBrand={inputBrand}
+        inputResult={inputResult}
+      />
 
       <h1 className={"text-red-600 text-center font-semibold my-4"}>{error}</h1>
 
       <div className={"mt-8 flex justify-around"}>
         <button
-          className={
-            "tracking-widest bg-teal-900 px-6 py-2 rounded font-bold text-white cursoir-pointer mb-8"
-          }
+          className={`tracking-widest ${
+            lastname === "" ||
+            firstname === "" ||
+            houseNumber === "" ||
+            region === "" ||
+            cellnumber === "" ||
+            birthdate === "" ||
+            gender === ""
+              ? "bg-gray-300"
+              : "bg-slate-800"
+          }  px-6 py-2 rounded font-bold text-white cursoir-pointer mb-8`}
           onClick={handleSubmit}
+          disabled={
+            lastname === "" ||
+            firstname === "" ||
+            houseNumber === "" ||
+            region === "" ||
+            cellnumber === "" ||
+            birthdate === "" ||
+            gender === ""
+              ? true
+              : false
+          }
         >
           SUBMIT
         </button>
