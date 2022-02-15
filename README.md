@@ -1,71 +1,56 @@
-# Getting Started with Create React App
+# Covid-Track-App
+Covid-track-app project aims to help track record of covid test result by PH consumers that uses test-kits bought from online stores.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to run the application
+1. Fork or download the app.
+2. Install dependencies, run `npm i` command.
+3. Change the axios base url to http://localhost:3001 in the App.js file.
+4. Start the web server using `npm start` command. The app will be served at http://localhost:3000.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Covid-track-api
+1. In order to fully run the covid-track-app you need the rails api https://github.com/fpvt-projects/covid-track-api.
+2. Fork or download the api, then run `bundle install` in your api directory.
+3. Run `rails db:migrate` and `rails db:seed` to setup the database.
+4. Run the api server using `rails s -p 3001` to avoid conflict with the react server.
 
-### `npm start`
+## User stories
+- Users should be able to register and create an account.
+- Users should be able to create, edit, and delete journal entries.
+- Users should be able to edit profile information.
+- Users should be able to submit test results and view submitted result logs.
+- Users should be able to read news updates and view covid data counts.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
+- Mobile view responsiveness.
+- Registration
+  - Account registration with automatic sign in.
+  - Can also submit test result in the registration.
+- Journal
+  - Helps monitor the user's condition.
+  - Users can create, edit, and delete journal entries.
+- Submit result & result log
+  - Users are able to submit record of their test results.
+  - Users are able to view result logs.
+- Chart & Counts
+  - Able to view numbers of covid data.
+- News updates
+  - Get updated with the latest news.
+  - Images, title, content, and link to the original article of the news.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Dependencies
+- Node
+- tailwindcss
+- react-router-dom v6
+- Axios
+- react-responsive-carousel
+- react-chartjs
+- react-icons
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# covid-track-app
+## What the app looks like
+### Home (Desktop view)
+![HomeIndex](https://user-images.githubusercontent.com/87056920/154110412-eadcb498-a289-4551-bd47-eadf4b826ec7.JPG)
+### Journal (Mobile view)
+![Journal](https://user-images.githubusercontent.com/87056920/154109044-cac3aa72-9d58-4d79-8078-094a849e0a87.JPG)
+### ResultLog (Mobile view)
+![ResultLog](https://user-images.githubusercontent.com/87056920/154109881-29b0f5dd-a12e-4557-9a0b-7d6de0413041.JPG)
