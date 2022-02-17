@@ -5,15 +5,6 @@ With this project, we are assuming that if the person is responsible enough to d
 
 The vision is that the QR redirecting to this project will be put in the box of the test kits and a message instructing the user to scan the qr and submit the their results.
 
-- axios v0.25
-- chart.js-3 v2.7.7
-- jwt-decode v3.1.2
-- react v17.0.2
-- react-icons v4.3.1
-- react-responsive-carousel v3.2.22
-- react-router-dom v6.2.1
-- tailwindcss v3.0.16
-
 ## How to run the application
 1. Fork or download the app.
 2. Install dependencies, run `npm i` command.
@@ -26,6 +17,18 @@ The vision is that the QR redirecting to this project will be put in the box of 
 2. Fork or download the api, then run `bundle install` in your api directory.
 3. Run `rails db:migrate` and `rails db:seed` to setup the database.
 4. Run the api server using `rails s -p 3001` to avoid conflict with the react server.
+
+## Dependencies
+```
+axios 0.25
+chart.js-3 2.7.7
+jwt-decode 3.1.2
+react 17.0.2
+react-icons 4.3.1
+react-responsive-carousel 3.2.22
+react-router-dom 6.2.1
+tailwindcss 3.0.16
+```
 
 ## User stories
 - Users should be able to register and create an account.
@@ -51,8 +54,12 @@ The vision is that the QR redirecting to this project will be put in the box of 
 - [x] News updates
   - Get updated with the latest news.
   - Images, title, content, and link to the original article of the news.
-- [ ] Add an admin
+- [ ] Users will be able to add pictures for results
+- [ ] Users are able to upload profile pictures
+- [ ] API will generate QR codes specific for each users showing their results and profile
+- [ ] Will add Admin and Medical Roles
 - [ ] Improve ui
+
 
 
 
