@@ -3,7 +3,7 @@ Covid tracking app is a project that aims to help in the collection of data from
 Recently there has been another covid surge and many have used antigen test kits that are bought from online stores and the results of those test are not being recorded.
 With this project, we are assuming that if the person is responsible enough to do a health test, he/she is also responsible enough to follow some simple instructions.
 
-The vision is that the QR redirecting to this project will be put in the box of the test kits and a simple message instructing the user to scan the qr and submit the their results.
+The vision is that the QR redirecting to this project will be put in the box of the test kits and a message instructing the user to scan the qr and submit the their results.
 
 - axios v0.25
 - chart.js-3 v2.7.7
