@@ -1,6 +1,15 @@
 # Covid-Track-App
 Covid-track-app project aims to help track record of covid test result by PH consumers that uses test-kits bought from online stores.
 
+- axios v0.25
+- chart.js-3 v2.7.7
+- jwt-decode v3.1.2
+- react v17.0.2
+- react-icons v4.3.1
+- react-responsive-carousel v3.2.22
+- react-router-dom v6.2.1
+- tailwindcss v3.0.16
+
 ## How to run the application
 1. Fork or download the app.
 2. Install dependencies, run `npm i` command.
@@ -21,36 +30,25 @@ Covid-track-app project aims to help track record of covid test result by PH con
 - Users should be able to submit test results and view submitted result logs.
 - Users should be able to read news updates and view covid data counts.
 
-## Features
-- Mobile view responsiveness.
-- Registration
+## Features / Roadmap
+- [x] Mobile view responsiveness.
+- [x] Registration
   - Account registration with automatic sign in.
   - Can also submit test result in the registration.
-- Journal
+- [x] Journal
   - Helps monitor the user's condition.
   - Users can create, edit, and delete journal entries.
-- Submit result & result log
+- [x] Submit result & result log
   - Users are able to submit record of their test results.
   - Users are able to view result logs.
-- Chart & Counts
-  - Able to view numbers of covid data.
-- News updates
+- [ ] Chart & Counts
+  - [x] Able to view numbers of covid data.
+  - [ ] Data for the graph
+- [x] News updates
   - Get updated with the latest news.
   - Images, title, content, and link to the original article of the news.
+- [ ] Add an admin
+- [ ] Improve ui
 
-## Dependencies
-- Node
-- tailwindcss
-- react-router-dom v6
-- Axios
-- react-responsive-carousel
-- react-chartjs
-- react-icons
 
-## What the app looks like
-### Home (Desktop view)
-![HomeIndex](https://user-images.githubusercontent.com/87056920/154110412-eadcb498-a289-4551-bd47-eadf4b826ec7.JPG)
-### Journal (Mobile view)
-![Journal](https://user-images.githubusercontent.com/87056920/154109044-cac3aa72-9d58-4d79-8078-094a849e0a87.JPG)
-### ResultLog (Mobile view)
-![ResultLog](https://user-images.githubusercontent.com/87056920/154109881-29b0f5dd-a12e-4557-9a0b-7d6de0413041.JPG)
+
