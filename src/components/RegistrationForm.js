@@ -115,7 +115,7 @@ function AccountDetailsForm() {
       .then((res) => {
         sessionStorage.setItem("token", res.data.jwt);
         let jwToken = res.data.jwt;
-        if (antigenType === "") {
+        if (antigenType === "" || brand === "" || result === "") {
           clearInputs();
           navigate("/");
         } else {
@@ -144,7 +144,6 @@ function AccountDetailsForm() {
         }
       )
       .then((res) => {
-        console.log(res);
         clearInputs();
         navigate("/");
       })
