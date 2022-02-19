@@ -16,7 +16,7 @@ function InputPassword({ label, value, onChange, error }) {
       <h1 className={`mt-1 text-xs select-none text-gray-400 ml-1`}>{label}</h1>
       <div className={`flex justify-between`}>
         <input
-          className={`pl-2 outline-none w-full bg-white text-lg`}
+          className={`pl-2 outline-none w-full bg-white`}
           type={togglePassword ? "text" : "password"}
           placeholder="••••••••"
           value={value}
