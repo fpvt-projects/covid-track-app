@@ -13,8 +13,8 @@ import { useState } from "react";
 import EditUserProfile from "./components/settings/EditUserProfile";
 import AboutUs from "./components/settings/AboutUs";
 
-axios.defaults.baseURL = "https://c0v1dtrackingapi.herokuapp.com";
-// axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "https://c0v1dtrackingapi.herokuapp.com";
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   const [resultToggler, setResultToggler] = useState(false);

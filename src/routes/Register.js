@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import RegistrationForm from "../components/RegistrationForm";
 import LoginForm from "../components/LoginForm";
 import HealthLogo from "../assets/HealthLogo.png";
-import { MdLogin } from "react-icons/md";
+import Logo from "../assets/re-design assets/Logo.jpg";
+import background from "../assets/re-design assets/background.jpg";
+import { AiFillCaretDown } from "react-icons/ai";
 
 function Register() {
   const [toggleSignIn, setToggleSignIn] = useState(false);
@@ -22,25 +24,33 @@ function Register() {
   });
 
   return (
-    <div className="w-screen flex flex-col h-screen overflow-hidden select-none">
-      <div className="w-full h-12 bg-slate-800 flex justify-between items-center px-12">
+    <div
+      className="w-screen flex flex-col h-screen overflow-hidden select-none relative bg-cover bg-center"
+      style={{ backgroundImage: `url(${background})` }}
+    >
+      {/* TOP BAR */}
+      <div className="w-full h-12 bg-white flex justify-between items-center shadow-lg px-12">
         <div className={`h-full flex items-center`}>
-          <img className={`h-3/5 mr-2`} src={HealthLogo} alt="" />
-          <h1 className="text-white font-bold tracking-widest text-xl tablet:block hidden">
+          <img className={`h-3/5 mr-2`} src={Logo} alt="" />
+          <h1 className="font-bold tracking-widest text-xl tablet:block hidden">
             COVID TRACKING APP
           </h1>
         </div>
-        <div>
+        <div className={`flex items-center`}>
+          <h1 className={`hidden tablet:block mr-2`}>
+            Already have an account?
+          </h1>
           <h1
-            className={`text-white flex items-center cursor-pointer whitespace-nowrap`}
+            className={`flex items-center cursor-pointer whitespace-nowrap`}
             onClick={showLoginForm}
           >
-            <p className={`text-2xl ml-1`}>
-              <MdLogin />
+            <p className={`text-lg font-semibold ml-1 flex items-center`}>
+              LOGIN <AiFillCaretDown />
             </p>
           </h1>
         </div>
       </div>
+
       <div className={`relative`}>
         <div
           className={`absolute ${
@@ -52,24 +62,27 @@ function Register() {
         <div className={`w-full h-full absolute top-0 bg-slate-800`}></div>
       </div>
 
-      <div className="w-full h-full bg-zinc-200 flex flex-col items-center overflow-y-auto">
+      {/* REGISTRATION FORM HERE! */}
+      <div className={`w-full h-full flex flex-col items-center`}>
         <RegistrationForm />
       </div>
+
       <div
         className={
-          "h-4 w-full bg-slate-800 flex justify-center items-center py-2"
+          "h-4 w-full bg-zinc-800 flex absolute bottom-0 justify-center items-center py-2"
         }
       >
         <h1 className={"text-center text-white text-xs tablet:block hidden"}>
           This website is intended for learning purpose only.
         </h1>
+
         <a
-          className={"text-center text-white text-xs ml-1"}
           target="_blank"
           rel="noreferrer"
-          href="https://www.freepik.com/vectors/logo"
+          className={"text-center text-white text-xs ml-1"}
+          href="https://www.freepik.com/vectors/nursing-logo"
         >
-          Logo vector created by freepik - www.freepik.com
+          Nursing logo vector created by freepik - www.freepik.com
         </a>
       </div>
     </div>

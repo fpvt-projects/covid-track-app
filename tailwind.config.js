@@ -1,6 +1,11 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    extend: {
+      backgroundImage: {
+        register: "url('../assets/re-design assets/background.jpg')",
+      },
+    },
     screens: {
       tablet: "640px",
       // => @media (min-width: 640px) { ... }
