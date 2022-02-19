@@ -74,8 +74,8 @@ function Journal() {
   }, []);
 
   return (
-    <div className={`w-full h-full flex flex-col items-center`}>
-      <div className={`w-11/12  mt-8 flex flex-col items-center`}>
+    <div className={`w-full bg-white h-full flex flex-col items-center `}>
+      <div className={`w-11/12 bg-white mt-8 flex flex-col items-center`}>
         <div className={`w-full border border-black rounded px-2 pt-2`}>
           <input
             className={`w-full outline-none font-semibold mb-1`}
@@ -108,8 +108,8 @@ function Journal() {
           </div>
         </div>
       </div>
-      <hr className={`border-t-1 mt-8 border-gray-400 w-full`} />
-      <div className={`w-full h-full overflow-y-auto bg-gray-400 pt-4`}>
+      <hr className={`border-t-1 mt-8  w-full`} />
+      <div className={`w-full h-full overflow-y-auto bg-gray-300 pt-4`}>
         <Posts entries={entries} getEntries={getEntries} />
       </div>
     </div>

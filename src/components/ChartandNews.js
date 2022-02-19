@@ -65,7 +65,7 @@ function Map() {
   }, []);
 
   return (
-    <div className={`w-full h-full flex relative`}>
+    <div className={`w-full h-full bg-white flex relative`}>
       <div className={`w-full tablet:w-3/4 ease-in-out duration-300 h-full`}>
         <CovidChart />
         <h1
@@ -78,7 +78,7 @@ function Map() {
       <div
         className={`${
           toggleCount ? "w-full" : "w-0"
-        } tablet:w-1/3 duration-300 tablet:static h-full absolute right-0 flex flex-col items-center tablet:bg-slate-800 bg-black/60 overflow-x-hidden overflow-y-auto`}
+        } tablet:w-1/3 duration-300 tablet:static tracking-widest h-full absolute right-0 flex flex-col items-center tablet:bg-gray-300 bg-black/60 overflow-x-hidden overflow-y-auto`}
       >
         <Cases
           apiTotalcount={apiTotalcount}
@@ -92,31 +92,6 @@ function Map() {
           apiDailynewrecoveries={apiDailynewrecoveries}
           daily_recover={daily_recover}
         />
-        {/* <CaseCounts
-          apidata={apiTotalcount}
-          appdata={total_case}
-          title="Total cases:"
-        />
-        <CaseCounts
-          apidata={adpiTotalrecover}
-          appdata={total_recover}
-          title="Total recoveries:"
-        />
-        <CaseCounts
-          apidata={apiActivecases}
-          appdata={active_cases}
-          title="Active cases:"
-        />
-        <CaseCounts
-          apidata={apiDailynewcases}
-          appdata={daily_new}
-          title="Daily new cases:"
-        />
-        <CaseCounts
-          apidata={apiDailynewrecoveries}
-          appdata={daily_recover}
-          title="Daily recovered:"
-        /> */}
       </div>
     </div>
   );

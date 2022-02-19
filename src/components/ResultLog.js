@@ -79,7 +79,7 @@ function ResultLog({ setUserState, setResultToggler, resultToggler }) {
     };
   }, []);
   return (
-    <div className={`w-full h-full flex flex-col tablet:flex-row`}>
+    <div className={`w-full h-full bg-white flex flex-col tablet:flex-row`}>
       <div
         className={` w-full tablet:w-1/3 h-50 flex flex-col justify-center items-center pb-8 border-b-2 border-black`}
       >

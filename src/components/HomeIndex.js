@@ -51,9 +51,9 @@ function HomeIndex() {
           <img alt="" className={`w-full`} src={doctors} />
         </div>
 
-        <div className={`w-11/12 mx-auto bg-white`}>
+        <div className={`w-full mx-auto bg-white`}>
           <div
-            className={`w-full flex items-center flex-col laptop:flex-row mt-8 pt-8`}
+            className={`w-full flex items-center flex-col laptop:flex-row  pt-8`}
           >
             <div
               className={`w-full laptop:w-1/2 h-full laptop:h-400 flex justify-center`}
@@ -109,14 +109,11 @@ function HomeIndex() {
       <div
         className={`${
           toggleNews ? "w-full" : "w-0"
-        } tablet:w-1/4 duration-300 tablet:static h-full absolute right-0 flex flex-col items-center tablet:bg-slate-800 bg-black/50 overflow-x-hidden overflow-y-auto`}
+        } tablet:w-1/4 duration-300 tablet:static h-full absolute right-0 flex flex-col items-center tablet:bg-zinc-200 bg-black/50 overflow-x-hidden overflow-y-auto`}
       >
-        <h1
-          className={`text-center hidden tablet:block text-white text-4xl my-4 font-semibold tracking-widest`}
+        <div
+          className={`w-full overflow-y-auto overflow-x-hidden flex justify-center z-10 tablet:z-0`}
         >
-          NEWS UPDATES
-        </h1>
-        <div className={`w-full overflow-y-auto flex justify-center z-10`}>
           <News newsList={newsList} />
         </div>
       </div>

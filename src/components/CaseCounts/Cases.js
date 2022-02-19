@@ -109,9 +109,7 @@ function Cases({
         </div>
       </div>
 
-      <div className={`h-full`}>
-        <img src={doctorPointerv2} alt="" />
-      </div>
+      <div className={`h-full`}></div>
     </div>
   );
 }

@@ -119,9 +119,11 @@ function Home({ resultToggler }) {
   }, []);
 
   return (
-    <div className={`flex w-screen h-screen relative flex-col tablet:flex-row`}>
+    <div
+      className={`flex w-screen h-screen relative flex-col bg-gray-200  tablet:flex-row overflow-hidden`}
+    >
       <div
-        className={`tablet:hidden flex justify-between w-full h-14 bg-slate-800`}
+        className={`tablet:hidden flex justify-between w-full h-14 bg-zinc-700`}
       >
         <div className={`w-1/3 h-full flex justify-center items-center`}>
           <button
@@ -154,34 +156,36 @@ function Home({ resultToggler }) {
       {/* -- START OF SIDEBAR -- */}
 
       <div
-        className={`h-full tablet:w-1/5 w-full bg-slate-800 flex-col items-center z-20 tablet:z-0 absolute top-0 tablet:static ${
+        className={`h-full tablet:w-96 w-full bg-white flex-col tablet:rounded-2xl items-center z-20 tablet:z-0 absolute top-0 tablet:static tablet:mx-4 tablet:my-4 shadow-2xl ${
           toggleSidebar ? "flex" : "hidden"
         } tablet:flex`}
       >
         {/* User details */}
-        <div className={`w-full h-40 border-b-2 bg-slate-700 flex`}>
+        <div
+          className={`w-full h-40 border-b-2 bg-white flex tablet:rounded-t-2xl`}
+        >
           <div className={`flex w-11/12 mx-auto`}>
             <div className={`w-1/3 h-full flex items-center justify-center`}>
               <img
                 className={`w-20 `}
                 src={gender === "Male" ? maleAvatar : femaleAvatar}
                 alt="male"
-              />
+              ></img>
             </div>
             <div className={`w-2/3 h-full flex flex-col justify-center`}>
               <div>
                 <h1
-                  className={`font-bold text-white text-xl`}
+                  className={`font-bold  text-xl`}
                 >{`${currentUser.lastname}, ${currentUser.firstname}`}</h1>
               </div>
               <div>
-                <h1 className={`text-white text-xs tracking-widest`}>
+                <h1 className={` text-xs tracking-widest`}>
                   {currentUser.email}
                 </h1>
               </div>
-              <div className={`w-20 text-center mt-4 select-none`}>
+              <div className={`w-20 text-center mt-1 select-none`}>
                 <h1
-                  className={`text-white font-semibold text-xs py-0.5 ${
+                  className={` text-white  tracking-wide text-xs py-0.5 ${
                     userStatus === "Positive" ? "bg-red-600" : "bg-green-600"
                   } rounded-xl`}
                 >
@@ -195,10 +199,10 @@ function Home({ resultToggler }) {
           <div>
             <div
               onClick={goToHome}
-              className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
+              className={` tracking-widest font-semibold hover:bg-gray-500 hover:text-white w-full py-4 flex cursor-pointer`}
             >
               <div className={`w-1/3 flex justify-center items-center`}>
-                <h1 className={`text-white text-lg`}>
+                <h1 className={` text-lg`}>
                   <AiOutlineHome />
                 </h1>
               </div>
@@ -208,7 +212,7 @@ function Home({ resultToggler }) {
             </div>
             <div
               onClick={goTojournal}
-              className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
+              className={` tracking-widest font-semibold hover:bg-gray-500 hover:text-white w-full py-4 flex cursor-pointer`}
             >
               <div className={`w-1/3 flex justify-center items-center`}>
                 <BsJournalBookmark />
@@ -219,7 +223,7 @@ function Home({ resultToggler }) {
             </div>
             {/* <div
               onClick={goTosubmitresult}
-              className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
+              className={` tracking-widest font-semibold hover:bg-gray-500 hover:text-white w-full py-4 flex cursor-pointer`}
             >
               <div className={`w-1/3`}></div>
               <div className={`w-2/3`}>
@@ -228,7 +232,7 @@ function Home({ resultToggler }) {
             </div> */}
             <div
               onClick={goToResultLog}
-              className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
+              className={` tracking-widest font-semibold hover:bg-gray-500 hover:text-white w-full py-4 flex cursor-pointer`}
             >
               <div className={`w-1/3 flex justify-center items-center`}>
                 <BsJournalPlus />
@@ -239,7 +243,7 @@ function Home({ resultToggler }) {
             </div>
             <div
               onClick={goTomap}
-              className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
+              className={` tracking-widest font-semibold hover:bg-gray-500 hover:text-white w-full py-4 flex cursor-pointer`}
             >
               <div className={`w-1/3 flex justify-center items-center`}>
                 <AiOutlineBarChart />
@@ -250,7 +254,7 @@ function Home({ resultToggler }) {
             </div>
             <div
               onClick={goTosettings}
-              className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer`}
+              className={` tracking-widest font-semibold hover:bg-gray-500 hover:text-white w-full py-4 flex cursor-pointer`}
             >
               <div className={`w-1/3 flex justify-center items-center`}>
                 <IoSettingsOutline />
@@ -264,7 +268,7 @@ function Home({ resultToggler }) {
           <div>
             <div
               onClick={signOut}
-              className={`text-white tracking-widest font-semibold hover:bg-cyan-700 w-full py-4 flex cursor-pointer mb-8`}
+              className={` tracking-widest font-semibold hover:bg-gray-500 hover:text-white w-full py-4 flex cursor-pointer mb-8`}
             >
               <div className={`w-1/3`}></div>
               <div className={`w-2/3`}>
@@ -287,7 +291,7 @@ function Home({ resultToggler }) {
       </div>
       <div
         className={
-          "h-4 w-full bg-slate-800 flex flex-col tablet:flex-row justify-center absolute bottom-0 items-center py-2"
+          "h-4 w-full bg-zinc-800 flex flex-col tablet:flex-row justify-center fixed bottom-0 items-center py-2"
         }
       >
         <a

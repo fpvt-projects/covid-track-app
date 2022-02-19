@@ -65,7 +65,7 @@ function Post({ title, content, id, getEntries, date }) {
 
   return (
     <div
-      className={`w-full mb-4 flex flex-col shadow-2xl bg-white p-4 rounded ${
+      className={`w-full mb-4 flex flex-col shadow-lg bg-white p-4 rounded ${
         toggleEdit ? "border border-red-400" : "border-none"
       }`}
     >
