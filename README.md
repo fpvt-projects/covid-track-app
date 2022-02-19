@@ -60,6 +60,12 @@ tailwindcss 3.0.16
 - [ ] Will add Admin and Medical Roles
 - [ ] Improve ui
 
+## This is what the app looks like
+### Login/Registration
+![Login_Registration](https://user-images.githubusercontent.com/87056920/154796142-eef412f1-2522-49e4-8ad0-09d6e2d27b85.JPG)
+
+### Home/Index
+![HomeIndex](https://user-images.githubusercontent.com/87056920/154796163-56856cb7-7890-4e83-ad8a-aa0c5e52468b.JPG)
 
 
 
