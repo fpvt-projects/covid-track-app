@@ -67,7 +67,7 @@ function ResultForm({
           />{" "}
           <h1 className={`text-xs font-semibold tracking-widest`}>POSITIVE</h1>
         </div>
-        <div className={`flex items-center`}>
+        <div className={`flex items-center mt-1 tablet:mt-0`}>
           <input
             className={`cursor-pointer mr-2`}
             onChange={inputResult}
