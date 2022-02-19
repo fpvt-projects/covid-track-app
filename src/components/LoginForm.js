@@ -22,7 +22,7 @@ function LoginForm() {
     if (email === "") {
       alert(`Please input a valid email.`);
     } else if (password === "") {
-      alert("Please input a valid password.");
+      alert(`Please input a valid password.`);
     } else {
       axios
         .post(`/auth`, { auth: { email: email, password: password } })
@@ -54,27 +54,7 @@ function LoginForm() {
     <div
       className={`w-full h-full bg-white shadow-xl flex flex-col justify-center items-center`}
     >
-      {/* <div
-        className={`w-full my-4 flex px-4 flex-col items-center justify-center`}
-      >
-        <img
-          className={`w-20 h-full`}
-          src={HealthLogo}
-          alt="Health-Logo-freepik"
-          border="0"
-        />
-        <div className={`flex flex-col `}>
-          <h1 className={`font-semibold text-l text-red-500`}>
-            COVID TRACKING APP
-          </h1>
-          <h1
-            className={`text-xs text-center tracking-widest font-semibold text-red-500`}
-          >
-            FINAL PROJECT 2022
-          </h1>
-        </div>
-      </div> */}
-      <div className={`w-4/5 mt-4`}>
+      <div className={"w-4/5 mx-auto flex flex-col"}>
         <InputText label="Email" value={email} onChange={handleInputEmail} />
         <InputPassword
           label="Password"
