@@ -6,6 +6,7 @@ import HealthLogo from "../assets/HealthLogo.png";
 import Logo from "../assets/re-design assets/Logo.jpg";
 import background from "../assets/re-design assets/background.jpg";
 import { AiFillCaretDown } from "react-icons/ai";
+import { AiFillCaretUp } from "react-icons/ai";
 
 function Register() {
   const [toggleSignIn, setToggleSignIn] = useState(false);
@@ -45,7 +46,7 @@ function Register() {
             onClick={showLoginForm}
           >
             <p className={`text-lg font-semibold ml-1 flex items-center`}>
-              LOGIN <AiFillCaretDown />
+              LOGIN {toggleSignIn ? <AiFillCaretUp /> : <AiFillCaretDown />}
             </p>
           </h1>
         </div>
@@ -53,9 +54,9 @@ function Register() {
 
       <div className={`relative`}>
         <div
-          className={`absolute ${
+          className={`fixed tablet:absolute ${
             toggleSignIn ? "flex" : "hidden"
-          } w-full h-100 top-0 m-0 right-0 bg-red-300 tablet:w-80 tablet:right-4`}
+          } w-full h-full tablet:h-96  tablet:top-0 m-0 right-0 bg-red-300 tablet:w-80 tablet:right-4`}
         >
           <LoginForm />
         </div>
@@ -79,7 +80,7 @@ function Register() {
         <a
           target="_blank"
           rel="noreferrer"
-          className={"text-center text-white text-xs ml-1"}
+          className={"text-center text-white text-xs ml-1 whitespace-nowrap"}
           href="https://www.freepik.com/vectors/nursing-logo"
         >
           Nursing logo vector created by freepik - www.freepik.com

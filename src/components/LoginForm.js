@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import HealthLogo from "../assets/HealthLogo.png";
+import InputText from "../components/Input/InputText";
+import InputPassword from "../components/Input/InputPassword";
+import { FaFacebookSquare } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import axios from "axios";
 
 function LoginForm() {
@@ -13,11 +16,13 @@ function LoginForm() {
   const handleInputEmail = (e) => setEmail(e.target.value);
   const handleInputPassword = (e) => setPassword(e.target.value);
 
+  const featureLock = () => alert(`Feature not yet implemented.`);
+
   const handleLogin = () => {
     if (email === "") {
-      setError("Please input a valid email.");
+      alert(`Please input a valid email.`);
     } else if (password === "") {
-      setError("Please input a valid password.");
+      alert("Please input a valid password.");
     } else {
       axios
         .post(`/auth`, { auth: { email: email, password: password } })
@@ -27,7 +32,7 @@ function LoginForm() {
         })
         .catch((error) => {
           if (error.response.request.status === 404) {
-            setError("Email or password does not match!");
+            alert(`Invalid email or password!`);
           }
         });
     }
@@ -49,7 +54,7 @@ function LoginForm() {
     <div
       className={`w-full h-full bg-white shadow-xl flex flex-col justify-center items-center`}
     >
-      <div
+      {/* <div
         className={`w-full my-4 flex px-4 flex-col items-center justify-center`}
       >
         <img
@@ -68,53 +73,60 @@ function LoginForm() {
             FINAL PROJECT 2022
           </h1>
         </div>
-      </div>
-
-      <div
-        className={`w-4/5 h-12 border ${
-          error === "Please input a valid email."
-            ? "border-red-500"
-            : "border-black"
-        } rounded`}
-      >
-        <h1 className={`text-xs select-none text-gray-400 ml-1`}>Email</h1>
-        <input // Email
-          className={`pl-2 outline-none w-full`}
-          type="text"
-          value={email}
-          onChange={handleInputEmail}
-        />
-      </div>
-      <div
-        className={`w-4/5 h-12 border mt-4 ${
-          error === "Please input a valid password."
-            ? "border-red-500"
-            : "border-black"
-        } rounded`}
-      >
-        <h1 className={`text-xs select-none text-gray-400 ml-1`}>Password</h1>
-        <input // password
-          className={` pl-2 outline-none w-4/5`}
-          type="password"
+      </div> */}
+      <div className={`w-4/5 mt-4`}>
+        <InputText label="Email" value={email} onChange={handleInputEmail} />
+        <InputPassword
+          label="Password"
           value={password}
           onChange={handleInputPassword}
         />
+        <h1
+          className={`text-right text-sm hover:text-blue-800 cursor-pointer `}
+          onClick={featureLock}
+        >
+          Forgot password?
+        </h1>
+        <button
+          className={
+            "w-full tracking-widest bg-slate-800 hover:bg-slate-600 px-6 py-2 rounded-sm mt-2 font-bold text-white cursoir-pointer"
+          }
+          onClick={handleLogin}
+        >
+          LOGIN
+        </button>
+
+        <div className={`w-4/5 text-center mx-auto`}>
+          <h1 className={`font-semibold text-sm py-1`}>or</h1>
+        </div>
+
+        <div
+          className={`w-full mt-2 cursor-pointer flex items-center  text-white bg-blue-800 py-2 px-1 hover:bg-blue-900`}
+          onClick={featureLock}
+        >
+          <div className={`text-xl w-1/4  flex justify-center `}>
+            <FaFacebookSquare />
+          </div>
+          <div
+            className={`w-2/3 flex justify-start text-xs tracking-widest py-1`}
+          >
+            Login with Facebook
+          </div>
+        </div>
+        <div
+          className={`w-full mt-2 cursor-pointer flex items-center text-white bg-red-600 py-2 px-1 hover:bg-red-700`}
+          onClick={featureLock}
+        >
+          <div className={`text-xl w-1/4 flex justify-center`}>
+            <FaGoogle />
+          </div>
+          <div
+            className={`w-2/3 flex justify-start text-xs tracking-widest py-1`}
+          >
+            Login with Google
+          </div>
+        </div>
       </div>
-
-      <h1
-        className={"text-red-600 text-center font-semibold my-4 animate-bounce"}
-      >
-        {error}
-      </h1>
-
-      <button
-        className={
-          "tracking-widest bg-slate-800 hover:bg-slate-600 px-6 py-2 rounded mt-2 font-bold text-white cursoir-pointer mb-8"
-        }
-        onClick={handleLogin}
-      >
-        LOGIN
-      </button>
     </div>
   );
 }
